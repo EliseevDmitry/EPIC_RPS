@@ -9,10 +9,19 @@ import SwiftUI
 
 struct FightResultView: View {
     //MARK: - PROPERTIES
+    var winOrLose = true
     
     //MARK: - BODY
     var body: some View {
-        Text("Результаты игры")
+        ZStack {
+            Circle()
+                .fill(Color(hex: 0x2B2870))
+            .frame(width: 176, height: 176)
+            Image(winOrLose ? .player2 : .player1)
+                .resizable()
+                .frame(width: 66.89, height: 77.9)
+        }
+        
     }
 }
 
