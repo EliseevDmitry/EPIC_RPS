@@ -63,8 +63,8 @@
 		262FEF0A2C15EB07008F8CF8 /* EPIC_RPS */ = {
 			isa = PBXGroup;
 			children = (
+				26AD3E9E2C15F26400E93301 /* App_Run */,
 				26F6551E2C16CDA600BEB704 /* Components */,
-				26AD3E9E2C15F26400E93301 /* App */,
 				26AD3E9D2C15F25800E93301 /* View */,
 				26AD3E9C2C15F24700E93301 /* Model */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
@@ -100,12 +100,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		26AD3E9E2C15F26400E93301 /* App */ = {
+		26AD3E9E2C15F26400E93301 /* App_Run */ = {
 			isa = PBXGroup;
 			children = (
 				262FEF0B2C15EB07008F8CF8 /* EPIC_RPSApp.swift */,
 			);
-			path = App;
+			path = App_Run;
 			sourceTree = "<group>";
 		};
 		26F6551E2C16CDA600BEB704 /* Components */ = {
@@ -328,7 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EPIC_RPS/Preview Content\"";
-				DEVELOPMENT_TEAM = LT54Q8Z33F;
+				DEVELOPMENT_TEAM = 9W4LY938NZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -342,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.eliseev.dmitry.EPIC-RPS";
+				PRODUCT_BUNDLE_IDENTIFIER = khabib.rulesview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -362,7 +362,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"EPIC_RPS/Preview Content\"";
-				DEVELOPMENT_TEAM = LT54Q8Z33F;
+				DEVELOPMENT_TEAM = 9W4LY938NZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -376,7 +376,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.eliseev.dmitry.EPIC-RPS";
+				PRODUCT_BUNDLE_IDENTIFIER = khabib.rulesview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
