@@ -66,7 +66,6 @@
 				26AD3E9E2C15F26400E93301 /* App_Run */,
 				26F6551E2C16CDA600BEB704 /* Components */,
 				26AD3E9D2C15F25800E93301 /* View */,
-				26AD3E9C2C15F24700E93301 /* Model */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
 				262FEF112C15EB09008F8CF8 /* Preview Content */,
 			);
@@ -79,13 +78,6 @@
 				262FEF122C15EB09008F8CF8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		26AD3E9C2C15F24700E93301 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		26AD3E9D2C15F25800E93301 /* View */ = {

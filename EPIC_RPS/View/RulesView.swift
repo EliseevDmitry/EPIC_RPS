@@ -4,16 +4,16 @@ import SwiftUI
 
 
 struct RulesView: View {
-    //MARK: - PROPERTIES
-    
-    
-    //MARK: - BODY
     var body: some View {
-      
+     
+        
         VStack(alignment: .leading, spacing: 16) {
+            var textBlue = "500 баллов"
+                 
             Text("Rules")
                 .font(.largeTitle)
-                .fontWeight(.bold)
+                
+              
                 .padding(.top)
             RuleItem(number: 1, text: "Игра проводится между игроком и компьютером.")
             
@@ -21,25 +21,24 @@ struct RulesView: View {
                             .padding(.top)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            GestureItem(icon: "Paper", text: "Кулак > Ножницы")
-                            GestureItem(icon: "Scissors", text: "Бумага > Кулак")
-                            GestureItem(icon: "hand.scissors.fill", text: "Ножницы > Бумага")
+                            GestureItem( text: "Кулак > Ножницы", image2: "Paper")
+                            GestureItem( text: "Бумага > Кулак", image2: "Scissors")
+                            GestureItem(text: "Ножницы > Бумага", image2: "Stonestone")
                         }
                         .padding(.leading, 32)
 
-                        RuleItem(number: 3, text: "У игрока есть 30 сек. для выбора жеста.")
-                        RuleItem(number: 4, text: "Игра ведётся до трёх побед одного из участников.")
-                        RuleItem(number: 5, text: "За каждую победу игрок получает 500 баллов, которые можно посмотреть на доске лидеров.")
+            RuleItem(number: 3, text: "У игрока есть 30 сек. для выбора жеста.")
+            RuleItem(number: 4, text: "Игра ведётся до трёх побед одного из участников.")
+            RuleItem(number: 5, text: "За каждую победу игрок получает \(textBlue), которые можно посмотреть на доске лидеров.")
 
                         Spacer()
                     }
                     .padding()
-                    .navigationBarTitle("", displayMode: .inline)
+                    .navigationBarTitle("", displayMode: .large)
+                    
                 
             
-            
         }
-            
         
     }
 
@@ -51,47 +50,50 @@ struct RuleItem: View {
 
     var body: some View {
         HStack(alignment: .top) {
-            Text("\(number)")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(.yellow)
-                .frame(width: 30)
-
+            ZStack{
+                Circle()
+                    .fill(Color.yellow)
+                    .frame(width: 30, height: 30)
+                Text("\(number)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .frame(width: 30)
+                    
+                
+            }
             Text(text)
                 .font(.body)
                 .fixedSize(horizontal: false, vertical: true)
+                .shadow(color: .gray, radius: 2, x: 0, y: 1)
+            
+
         }
     }
 }
 
 struct GestureItem: View {
-    let icon: String
+    //let icon: String
     let text: String
-
+    let image2: String
     var body: some View {
         HStack(alignment: .center) {
-            Image("Paper")
-                .foregroundColor(.blue)
-                .font(.title2)
-                .frame(width: 30)
-            Image("Scissors")
-                .foregroundColor(.blue)
-                .font(.title2)
-                .frame(width: 30)
-            Image("Stonestone")
+            Image("\(image2)")
                 .foregroundColor(.blue)
                 .font(.title2)
                 .frame(width: 30)
             
-
             Text(text)
                 .font(.body)
+                .shadow(color: .gray, radius: 2, x: 0, y: 1)
+
         }
     }
 }
-
-
-//MARK: - PREVIEW
-#Preview {
-    RulesView()
+struct RulesView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            RulesView()
+        }
+    }
 }
