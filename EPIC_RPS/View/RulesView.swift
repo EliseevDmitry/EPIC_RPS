@@ -90,10 +90,4 @@ struct GestureItem: View {
         }
     }
 }
-struct RulesView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            RulesView()
-        }
-    }
-}
+
