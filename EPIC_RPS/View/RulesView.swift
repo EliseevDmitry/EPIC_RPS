@@ -1,11 +1,7 @@
-//
-//  RulesView.swift
-//  EPIC_RPS
-//
-//  Created by Dmitriy Eliseev on 09.06.2024.
-//
+//Khabibullokh's Task
 
 import SwiftUI
+
 
 struct RulesView: View {
     //MARK: - PROPERTIES
