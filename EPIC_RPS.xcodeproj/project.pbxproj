@@ -14,6 +14,7 @@
 		264228642C1A10B1005D8E83 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 264228612C1A10AF005D8E83 /* Мелодия 1.mp3 */; };
 		264228652C1A10B1005D8E83 /* Мелодия 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 264228622C1A10B0005D8E83 /* Мелодия 3.mp3 */; };
 		264228662C1A10B1005D8E83 /* Мелодия 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 264228632C1A10B1005D8E83 /* Мелодия 2.mp3 */; };
+		264228692C1A1417005D8E83 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264228672C1A1417005D8E83 /* Color+.swift */; };
 		26AD3EA02C15F34500E93301 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3E9F2C15F34500E93301 /* RulesView.swift */; };
 		26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA12C15F37A00E93301 /* FightLoadView.swift */; };
 		26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA32C15F3B200E93301 /* StartGameView.swift */; };
@@ -37,6 +38,7 @@
 		264228612C1A10AF005D8E83 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
 		264228622C1A10B0005D8E83 /* Мелодия 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 3.mp3"; sourceTree = "<group>"; };
 		264228632C1A10B1005D8E83 /* Мелодия 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 2.mp3"; sourceTree = "<group>"; };
+		264228672C1A1417005D8E83 /* Color+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		26AD3E9F2C15F34500E93301 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		26AD3EA12C15F37A00E93301 /* FightLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightLoadView.swift; sourceTree = "<group>"; };
 		26AD3EA32C15F3B200E93301 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				26AD3E9D2C15F25800E93301 /* View */,
 				26AD3E9C2C15F24700E93301 /* Model */,
 				26E9A32D2C1962AE008B4F44 /* ViewModel */,
+				264228682C1A1417005D8E83 /* Extensions */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
 				262FEF112C15EB09008F8CF8 /* Preview Content */,
 			);
@@ -102,6 +105,14 @@
 				264228622C1A10B0005D8E83 /* Мелодия 3.mp3 */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		264228682C1A1417005D8E83 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				264228672C1A1417005D8E83 /* Color+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		26AD3E9C2C15F24700E93301 /* Model */ = {
@@ -234,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26E9A3312C196307008B4F44 /* ModelGame.swift in Sources */,
+				264228692C1A1417005D8E83 /* Color+.swift in Sources */,
 				26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */,
 				26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */,
 				262FEF0E2C15EB07008F8CF8 /* SplashView.swift in Sources */,
