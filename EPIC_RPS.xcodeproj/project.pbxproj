@@ -17,6 +17,7 @@
 		26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA52C15F3E300E93301 /* FightResultView.swift */; };
 		26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6551F2C16CDE300BEB704 /* GameStatusView.swift */; };
 		26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F655212C16EDCD00BEB704 /* TimerView.swift */; };
+		9216F7182C198BF500A355A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F7172C198BF500A355A6 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		26AD3EA52C15F3E300E93301 /* FightResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
 		26F6551F2C16CDE300BEB704 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		26F655212C16EDCD00BEB704 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		9216F7172C198BF500A355A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				26AD3EA12C15F37A00E93301 /* FightLoadView.swift */,
 				26AD3EA32C15F3B200E93301 /* StartGameView.swift */,
 				26AD3EA52C15F3E300E93301 /* FightResultView.swift */,
+				9216F7172C198BF500A355A6 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */,
 				26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */,
 				262FEF0E2C15EB07008F8CF8 /* SplashView.swift in Sources */,
+				9216F7182C198BF500A355A6 /* SettingsView.swift in Sources */,
 				262FEF0C2C15EB07008F8CF8 /* EPIC_RPSApp.swift in Sources */,
 				26AD3EA02C15F34500E93301 /* RulesView.swift in Sources */,
 				26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */,
