@@ -5,11 +5,16 @@
 //  Created by Dmitriy Eliseev on 11.06.2024.
 //
 
+
 import SwiftUI
 
 struct SelectedButton: View {
+    var epicManager: GameManager
     @State var isPressed: Bool = false
+    
+    
     let image: ImageResource
+    let data: ChoseData
     
     var body: some View {
         ZStack{
@@ -19,7 +24,9 @@ struct SelectedButton: View {
                 .frame(width: 80, height: 80)
             Button {
                 isPressed.toggle()
-                print("Btn click \(image)")
+//                print("Btn click \(image)")
+                epicManager.StartGame(data: data)
+                isPressed.toggle()
             } label: {
                 Image(image)
             }
@@ -28,6 +35,7 @@ struct SelectedButton: View {
 }
 
 struct GameButtons: View {
+    var epicManager: GameManager
     //скрытая кнопка дополнительного задания
     @State private var isHiddenButton = false
     @State private var isPressedPeople = true
@@ -38,7 +46,7 @@ struct GameButtons: View {
     var body: some View {
         ZStack {
             VStack{
-                SelectedButton(isPressed: isPressedPaper, image: .paper)
+                SelectedButton(epicManager: epicManager, isPressed: isPressedPaper, image: .paper, data: .paper)
                 Spacer()
                 
                 //Кнопка к доп. заданию
@@ -53,9 +61,9 @@ struct GameButtons: View {
                 
             }
             HStack{
-                SelectedButton(isPressed: isPressedStone, image: .stone)
+                SelectedButton(epicManager: epicManager, isPressed: isPressedStone, image: .stone, data: .rock)
                 Spacer()
-                SelectedButton(isPressed: isPressedScissors, image: .scissors)
+                SelectedButton(epicManager: epicManager, isPressed: isPressedScissors, image: .scissors, data: .scissors)
             }
         }
         .frame(width: 272, height: 160)
@@ -64,5 +72,5 @@ struct GameButtons: View {
 }
 
 #Preview{
-    GameButtons()
+    GameButtons(epicManager: GameManager())
 }

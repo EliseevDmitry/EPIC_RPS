@@ -16,6 +16,8 @@
 		26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA32C15F3B200E93301 /* StartGameView.swift */; };
 		26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA52C15F3E300E93301 /* FightResultView.swift */; };
 		26DC1D4F2C18B79400F58E72 /* GameButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC1D4E2C18B79400F58E72 /* GameButtons.swift */; };
+		26E9A32F2C1962F4008B4F44 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A32E2C1962F4008B4F44 /* GameManager.swift */; };
+		26E9A3312C196307008B4F44 /* ModelGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A3302C196307008B4F44 /* ModelGame.swift */; };
 		26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6551F2C16CDE300BEB704 /* GameStatusView.swift */; };
 		26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F655212C16EDCD00BEB704 /* TimerView.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +33,8 @@
 		26AD3EA32C15F3B200E93301 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
 		26AD3EA52C15F3E300E93301 /* FightResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
 		26DC1D4E2C18B79400F58E72 /* GameButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButtons.swift; sourceTree = "<group>"; };
+		26E9A32E2C1962F4008B4F44 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		26E9A3302C196307008B4F44 /* ModelGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGame.swift; sourceTree = "<group>"; };
 		26F6551F2C16CDE300BEB704 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		26F655212C16EDCD00BEB704 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +73,7 @@
 				26AD3E9E2C15F26400E93301 /* App */,
 				26AD3E9D2C15F25800E93301 /* View */,
 				26AD3E9C2C15F24700E93301 /* Model */,
+				26E9A32D2C1962AE008B4F44 /* ViewModel */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
 				262FEF112C15EB09008F8CF8 /* Preview Content */,
 			);
@@ -86,6 +91,7 @@
 		26AD3E9C2C15F24700E93301 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				26E9A3302C196307008B4F44 /* ModelGame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +114,14 @@
 				262FEF0B2C15EB07008F8CF8 /* EPIC_RPSApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		26E9A32D2C1962AE008B4F44 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				26E9A32E2C1962F4008B4F44 /* GameManager.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		26F6551E2C16CDA600BEB704 /* Components */ = {
@@ -190,6 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26E9A3312C196307008B4F44 /* ModelGame.swift in Sources */,
 				26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */,
 				26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */,
 				262FEF0E2C15EB07008F8CF8 /* SplashView.swift in Sources */,
@@ -199,6 +214,7 @@
 				26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */,
 				26DC1D4F2C18B79400F58E72 /* GameButtons.swift in Sources */,
 				26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */,
+				26E9A32F2C1962F4008B4F44 /* GameManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
