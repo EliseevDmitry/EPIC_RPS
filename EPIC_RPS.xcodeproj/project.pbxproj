@@ -20,6 +20,11 @@
 		26E9A3312C196307008B4F44 /* ModelGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A3302C196307008B4F44 /* ModelGame.swift */; };
 		26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6551F2C16CDE300BEB704 /* GameStatusView.swift */; };
 		26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F655212C16EDCD00BEB704 /* TimerView.swift */; };
+		9216F7412C1A053200A355A6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F7402C1A053200A355A6 /* SettingView.swift */; };
+		9216F7442C1A05AB00A355A6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F7432C1A05AB00A355A6 /* SoundManager.swift */; };
+		9216F7472C1A060700A355A6 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F7462C1A060700A355A6 /* Мелодия 1.mp3 */; };
+		9216F74A2C1A061600A355A6 /* Мелодия 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F7482C1A061600A355A6 /* Мелодия 2.mp3 */; };
+		9216F74B2C1A061600A355A6 /* Мелодия 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F7492C1A061600A355A6 /* Мелодия 3.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,11 @@
 		26E9A3302C196307008B4F44 /* ModelGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelGame.swift; sourceTree = "<group>"; };
 		26F6551F2C16CDE300BEB704 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		26F655212C16EDCD00BEB704 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		9216F7402C1A053200A355A6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		9216F7432C1A05AB00A355A6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		9216F7462C1A060700A355A6 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
+		9216F7482C1A061600A355A6 /* Мелодия 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 2.mp3"; sourceTree = "<group>"; };
+		9216F7492C1A061600A355A6 /* Мелодия 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 3.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +79,12 @@
 		262FEF0A2C15EB07008F8CF8 /* EPIC_RPS */ = {
 			isa = PBXGroup;
 			children = (
+				9216F7452C1A05DD00A355A6 /* New Group */,
 				26AD3E9E2C15F26400E93301 /* App_Run */,
 				26F6551E2C16CDA600BEB704 /* Components */,
 				26AD3E9D2C15F25800E93301 /* View */,
 				26AD3E9C2C15F24700E93301 /* Model */,
+				9216F7422C1A059300A355A6 /* Managers */,
 				26E9A32D2C1962AE008B4F44 /* ViewModel */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
 				262FEF112C15EB09008F8CF8 /* Preview Content */,
@@ -104,6 +116,7 @@
 				26AD3EA12C15F37A00E93301 /* FightLoadView.swift */,
 				26AD3EA32C15F3B200E93301 /* StartGameView.swift */,
 				26AD3EA52C15F3E300E93301 /* FightResultView.swift */,
+				9216F7402C1A053200A355A6 /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -132,6 +145,25 @@
 				26DC1D4E2C18B79400F58E72 /* GameButtons.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		9216F7422C1A059300A355A6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9216F7432C1A05AB00A355A6 /* SoundManager.swift */,
+			);
+			name = Managers;
+			path = Model/Managers;
+			sourceTree = "<group>";
+		};
+		9216F7452C1A05DD00A355A6 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				9216F7462C1A060700A355A6 /* Мелодия 1.mp3 */,
+				9216F7482C1A061600A355A6 /* Мелодия 2.mp3 */,
+				9216F7492C1A061600A355A6 /* Мелодия 3.mp3 */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +224,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9216F74B2C1A061600A355A6 /* Мелодия 3.mp3 in Resources */,
+				9216F7472C1A060700A355A6 /* Мелодия 1.mp3 in Resources */,
+				9216F74A2C1A061600A355A6 /* Мелодия 2.mp3 in Resources */,
 				262FEF132C15EB09008F8CF8 /* Preview Assets.xcassets in Resources */,
 				262FEF102C15EB09008F8CF8 /* Assets.xcassets in Resources */,
 			);
@@ -208,11 +243,13 @@
 				26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */,
 				26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */,
 				262FEF0E2C15EB07008F8CF8 /* SplashView.swift in Sources */,
+				9216F7442C1A05AB00A355A6 /* SoundManager.swift in Sources */,
 				262FEF0C2C15EB07008F8CF8 /* EPIC_RPSApp.swift in Sources */,
 				26AD3EA02C15F34500E93301 /* RulesView.swift in Sources */,
 				26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */,
 				26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */,
 				26DC1D4F2C18B79400F58E72 /* GameButtons.swift in Sources */,
+				9216F7412C1A053200A355A6 /* SettingView.swift in Sources */,
 				26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */,
 				26E9A32F2C1962F4008B4F44 /* GameManager.swift in Sources */,
 			);
