@@ -12,10 +12,51 @@ struct SplashView: View {
     
     //MARK: - BODY
     var body: some View {
-        VStack {
-            Text("Главный экран")
-        }//: VSTACK
-        .padding()
+        NavigationView {
+            VStack {
+                
+                HStack {
+                    NavigationLink(destination: SettingsView()){
+                        Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundStyle(.black)
+                    }
+                    .padding(.leading, 20)
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: RulesView()){
+                        Image(systemName: "questionmark.circle.fill")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundStyle(.black)
+                    }
+                    .padding(.trailing, 20)
+                }
+                .padding(.top, 15)
+                
+                Spacer()
+                
+                Image(.epicRPSLogo)
+                    .resizable()
+                    .scaledToFit()
+                
+                Spacer().frame(height: 100)
+                
+                VStack(spacing: 15) {
+                    GameControlButtons(buttonText: "Start game", destination: StartGameView())
+                    GameControlButtons(buttonText: "Results",destination: FightResultView())
+                }
+            }
+            .padding(.bottom,20)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(LinearGradient(
+            gradient: Gradient(colors: [.splashBG1, .splashBG2]),
+            startPoint: .top,
+            endPoint: .bottom
+        ))
     }
     //MARK: - FUNCTIONS
     
