@@ -19,7 +19,7 @@ struct StartGameView: View {
                         .resizable()
                         .scaledToFit()
                     HStack{
-                        TimerView(timerTotal: 34, timerValue: 10)
+                        TimerView(timerTotal: 30, timerValue: 20)
                             .frame(height: 300)
                             .padding(.leading, 5)
                         Spacer()
@@ -28,7 +28,7 @@ struct StartGameView: View {
                             .font(.system(size: 60).bold())
                             .foregroundStyle(.yellowGame)
                        Spacer()
-                        GameStatusView(barTotal: 6, barValueOne: 2, barValueTwo: 3)
+                        GameStatusView(barTotal: 6, barValueOne: 2, barValueTwo: 1)
                             .frame(height: 400)
                             .padding(.trailing, 20)
                     }
@@ -67,20 +67,16 @@ struct StartGameView: View {
                         Spacer()
                     }
                 }//: OVERLAY
-                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
-   
-            
+            .overlay(alignment: .bottom){
+                    GameButtons()
+            }//: OVERLAY
+            .ignoresSafeArea()
         }
-        
-      
-        
     }
-        
-
-    //MARK: - FUNCTIONS
+//MARK: - FUNCTIONS
     
 }
 

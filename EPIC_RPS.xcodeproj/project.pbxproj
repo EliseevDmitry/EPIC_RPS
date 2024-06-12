@@ -15,6 +15,7 @@
 		26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA12C15F37A00E93301 /* FightLoadView.swift */; };
 		26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA32C15F3B200E93301 /* StartGameView.swift */; };
 		26AD3EA62C15F3E300E93301 /* FightResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AD3EA52C15F3E300E93301 /* FightResultView.swift */; };
+		26DC1D4F2C18B79400F58E72 /* GameButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DC1D4E2C18B79400F58E72 /* GameButtons.swift */; };
 		26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6551F2C16CDE300BEB704 /* GameStatusView.swift */; };
 		26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F655212C16EDCD00BEB704 /* TimerView.swift */; };
 /* End PBXBuildFile section */
@@ -29,6 +30,7 @@
 		26AD3EA12C15F37A00E93301 /* FightLoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightLoadView.swift; sourceTree = "<group>"; };
 		26AD3EA32C15F3B200E93301 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
 		26AD3EA52C15F3E300E93301 /* FightResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FightResultView.swift; sourceTree = "<group>"; };
+		26DC1D4E2C18B79400F58E72 /* GameButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButtons.swift; sourceTree = "<group>"; };
 		26F6551F2C16CDE300BEB704 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		26F655212C16EDCD00BEB704 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 			children = (
 				26F6551F2C16CDE300BEB704 /* GameStatusView.swift */,
 				26F655212C16EDCD00BEB704 /* TimerView.swift */,
+				26DC1D4E2C18B79400F58E72 /* GameButtons.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				26AD3EA02C15F34500E93301 /* RulesView.swift in Sources */,
 				26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */,
 				26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */,
+				26DC1D4F2C18B79400F58E72 /* GameButtons.swift in Sources */,
 				26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
