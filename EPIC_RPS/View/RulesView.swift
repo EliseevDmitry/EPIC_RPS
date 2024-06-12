@@ -4,11 +4,12 @@ import SwiftUI
 
 
 struct RulesView: View {
+    var textBlue = "500 баллов"
     var body: some View {
      
         
         VStack(alignment: .leading, spacing: 16) {
-            var textBlue = "500 баллов"
+           
                  
             Text("Rules")
                 .font(.largeTitle)
