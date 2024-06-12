@@ -18,6 +18,10 @@
 		26F655202C16CDE300BEB704 /* GameStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F6551F2C16CDE300BEB704 /* GameStatusView.swift */; };
 		26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F655212C16EDCD00BEB704 /* TimerView.swift */; };
 		9216F7182C198BF500A355A6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F7172C198BF500A355A6 /* SettingsView.swift */; };
+		9216F7362C19DD7F00A355A6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F7352C19DD7F00A355A6 /* SoundManager.swift */; };
+		9216F7392C19E13F00A355A6 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F7382C19E13F00A355A6 /* Мелодия 1.mp3 */; };
+		9216F73C2C19E14900A355A6 /* Мелодия 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F73A2C19E14900A355A6 /* Мелодия 3.mp3 */; };
+		9216F73D2C19E14900A355A6 /* Мелодия 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9216F73B2C19E14900A355A6 /* Мелодия 2.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,10 @@
 		26F6551F2C16CDE300BEB704 /* GameStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatusView.swift; sourceTree = "<group>"; };
 		26F655212C16EDCD00BEB704 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		9216F7172C198BF500A355A6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9216F7352C19DD7F00A355A6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		9216F7382C19E13F00A355A6 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
+		9216F73A2C19E14900A355A6 /* Мелодия 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 3.mp3"; sourceTree = "<group>"; };
+		9216F73B2C19E14900A355A6 /* Мелодия 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 2.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +76,10 @@
 				26AD3E9E2C15F26400E93301 /* App_Run */,
 				26F6551E2C16CDA600BEB704 /* Components */,
 				26AD3E9D2C15F25800E93301 /* View */,
+				9216F7342C19DD5F00A355A6 /* Managers */,
 				262FEF0F2C15EB09008F8CF8 /* Assets.xcassets */,
 				262FEF112C15EB09008F8CF8 /* Preview Content */,
+				9216F7372C19E11A00A355A6 /* Melodies */,
 			);
 			path = EPIC_RPS;
 			sourceTree = "<group>";
@@ -110,6 +120,24 @@
 				26F655212C16EDCD00BEB704 /* TimerView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		9216F7342C19DD5F00A355A6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				9216F7352C19DD7F00A355A6 /* SoundManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		9216F7372C19E11A00A355A6 /* Melodies */ = {
+			isa = PBXGroup;
+			children = (
+				9216F73B2C19E14900A355A6 /* Мелодия 2.mp3 */,
+				9216F73A2C19E14900A355A6 /* Мелодия 3.mp3 */,
+				9216F7382C19E13F00A355A6 /* Мелодия 1.mp3 */,
+			);
+			path = Melodies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +198,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9216F7392C19E13F00A355A6 /* Мелодия 1.mp3 in Resources */,
 				262FEF132C15EB09008F8CF8 /* Preview Assets.xcassets in Resources */,
+				9216F73D2C19E14900A355A6 /* Мелодия 2.mp3 in Resources */,
+				9216F73C2C19E14900A355A6 /* Мелодия 3.mp3 in Resources */,
 				262FEF102C15EB09008F8CF8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +222,7 @@
 				26AD3EA42C15F3B200E93301 /* StartGameView.swift in Sources */,
 				26F655222C16EDCD00BEB704 /* TimerView.swift in Sources */,
 				26AD3EA22C15F37A00E93301 /* FightLoadView.swift in Sources */,
+				9216F7362C19DD7F00A355A6 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
