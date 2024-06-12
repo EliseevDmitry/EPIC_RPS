@@ -14,6 +14,7 @@ struct SettingsView: View {
     @State private var melodyPlayTime = 0
     
     let melodies = ["Мелодия 1", "Мелодия 2", "Мелодия 3"]
+    let playMelody = SoundManager.shared
     
     var body: some View {
         NavigationView {
@@ -32,11 +33,13 @@ struct SettingsView: View {
                 
                 Section {
                     Picker("Фоновая музыка", selection: $melodyNumber) {
-                        ForEach(0 ..< melodies.count, id: \.self) {
-                            Text(melodies[$0])
-                                .foregroundStyle(.black)
+                        ForEach(0 ..< melodies.count, id: \.self) { index in
+                            Text(melodies[index])
                         }
                     }
+                    .onChange(of: melodyNumber) { _ in
+                                            playMelody.playSound(melodies[melodyNumber])
+                                        }
                     .padding(8)
                     .foregroundColor(.white)
                     .background(.orange)
@@ -50,6 +53,9 @@ struct SettingsView: View {
                 }
             }
             .shadow(radius: 10)
+//            .onAppear {
+//                playMelody.playSound("Мелодия 1")
+//            }
         }
     }
 }
