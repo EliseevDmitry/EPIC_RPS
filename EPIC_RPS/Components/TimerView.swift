@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct TimerView: View {
-    let timerTotal: Float
-    let timerValue: Float
+    var epicManager: GameManager
+    @State private var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var index: CGFloat = 1.0
     var body: some View {
         VStack{
             GeometryReader { screen in
@@ -18,17 +19,28 @@ struct TimerView: View {
                         .foregroundStyle(.timerempty)
                     RoundedRectangle(cornerRadius: .infinity)
                         .foregroundStyle(.timerfull)
-                        .frame(height: screen.size.height * CGFloat(timerValue) / CGFloat(timerTotal))
+                        .frame(height: (screen.size.height * CGFloat(self.index)))
                 }//: ZSTACK ProgressBar
             }
             .frame(width: 12)
-            Text("0:\(timerValue.formatted())")
+            Text("0:\(epicManager.gameTimer.gameTime.formatted())")
                 .font(.system(size: 12))
                 .foregroundStyle(.white)
         }
+        .onReceive(self.time, perform: { time in
+            if !epicManager.gameTimer.isStop{
+                if self.epicManager.gameTimer.gameTime != 0 {
+                    self.epicManager.gameTimer.gameTime -= 1
+                    self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
+                }
+            } else if epicManager.gameTimer.isStop {
+                return
+            }
+        })
+        
     }
 }
 
 #Preview {
-    TimerView(timerTotal: 30, timerValue: 15)
+    TimerView(epicManager: GameManager())
 }
