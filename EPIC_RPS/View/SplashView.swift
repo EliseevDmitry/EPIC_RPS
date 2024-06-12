@@ -17,19 +17,20 @@ struct SplashView: View {
                 
                 HStack {
                     NavigationLink(destination: SettingsView()){
-                        Image(.settings)
+                        Image(systemName: "gearshape.fill")
                             .resizable()
                             .frame(width: 35, height: 35)
-                            .foregroundStyle(.red)
+                            .foregroundStyle(.black)
                     }
                     .padding(.leading, 20)
                     
                     Spacer()
                     
                     NavigationLink(destination: RulesView()){
-                        Image(.rules)
+                        Image(systemName: "questionmark.circle.fill")
                             .resizable()
                             .frame(width: 35, height: 35)
+                            .foregroundStyle(.black)
                     }
                     .padding(.trailing, 20)
                 }
