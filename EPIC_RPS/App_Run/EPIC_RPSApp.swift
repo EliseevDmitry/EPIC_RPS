@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct EPIC_RPSApp: App {
+    @StateObject var epicManager = GameManager()
     var body: some Scene {
         WindowGroup {
-            FightLoadView()
+            StartGameView(epicManager: epicManager)
         }
     }
 }
