@@ -33,21 +33,24 @@ struct SplashView: View {
                     }
                     .padding(.trailing, 20)
                 }
+                .padding(.top, 15)
                 
-                
-                Spacer().frame(height: 80)
+                Spacer()
                 
                 Image(.epicRPSLogo)
+                    .resizable()
+                    .scaledToFit()
                 
-                Spacer().frame(height: 30)
+                Spacer().frame(height: 100)
                 
                 VStack(spacing: 15) {
                     GameControlButtons(buttonText: "Start game", destination: StartGameView())
                     GameControlButtons(buttonText: "Results",destination: FightResultView())
                 }
             }
+            .padding(.bottom,20)
         }
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(LinearGradient(
             gradient: Gradient(colors: [.splashBG1, .splashBG2]),
             startPoint: .top,
