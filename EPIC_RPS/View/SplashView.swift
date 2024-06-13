@@ -2,9 +2,6 @@
 import SwiftUI
 
 struct SplashView: View {
-    //MARK: - PROPERTIES
-    
-    //MARK: - BODY
     var body: some View {
         NavigationView {
             VStack {
@@ -53,11 +50,10 @@ struct SplashView: View {
             endPoint: .bottom
         ))
     }
-    //MARK: - FUNCTIONS
-    
+
 }
 
-//MARK: - PREVIEW
+
 #Preview {
     SplashView()
 }
