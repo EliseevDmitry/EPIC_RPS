@@ -13,14 +13,12 @@ struct SettingsView: View {
     let playMelody = SoundManager.shared
     
     var backButton : some View { Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-            }) {
-                HStack {
-                    Image(.backButton)
-                    .aspectRatio(contentMode: .fit)
-                }
-            }
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        Image(.arrow)
+            .aspectRatio(contentMode: .fit)
         }
+    }
     
     var body: some View {
         Form {
@@ -59,10 +57,10 @@ struct SettingsView: View {
             .navigationBarBackButtonHidden()
             .navigationBarItems(leading: backButton)
             .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("Settings").font(.title)
-                        }
-                    }
+                ToolbarItem(placement: .principal) {
+                    Text("Settings").font(.title)
+                }
+            }
             
         }
     }
