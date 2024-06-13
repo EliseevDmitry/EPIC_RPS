@@ -14,6 +14,8 @@ struct EPIC_RPSApp: App {
         WindowGroup {
             SplashView()
             //SettingsView()
+            //RulesView()
+            SplashView()
         }
     }
 }
