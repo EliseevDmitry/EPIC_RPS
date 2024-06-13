@@ -97,6 +97,7 @@ struct StartGameView: View {
         .onAppear{
             epicManager.ComputerSelectQuestion()
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
+            
         }
         
         

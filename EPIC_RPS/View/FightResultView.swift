@@ -3,6 +3,8 @@ import SwiftUI
 
 struct FightResultView: View {
     //MARK: - PROPERTIES
+    @Environment(\.presentationMode) var presentationMode
+    
     var winOrLose = true
     let yourScore = 3
     let computerScore = 1
@@ -40,7 +42,7 @@ struct FightResultView: View {
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
-                        print("home")
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
                     }
@@ -53,7 +55,7 @@ struct FightResultView: View {
                 }
                 .padding()
             }
-            
+            .navigationBarBackButtonHidden()
         }
         
     }
