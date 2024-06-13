@@ -13,9 +13,7 @@ struct EPIC_RPSApp: App {
     var body: some Scene {
         WindowGroup {
             SplashView()
-            //SettingsView()
-            //RulesView()
-            SplashView()
+         
         }
     }
 }
