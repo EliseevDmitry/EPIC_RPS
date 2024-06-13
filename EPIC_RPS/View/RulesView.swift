@@ -37,12 +37,24 @@ struct RulesView: View {
                         
                     })
                 }
+                
                                     ToolbarItem(placement: .principal) {
-                                        Text("Rules")
-                                            .font(.system(size: 25))
-                                            .fontWeight(.medium)
-                                            .frame(maxWidth: .infinity, alignment: .center)
+                                        HStack{
+                                            Spacer()
+                                            Text("Rules")
+                                                .font(.system(size: 25))
+                                                .fontWeight(.regular)
+                                                .frame(maxWidth: .infinity, alignment: .center)
+                                            Button(action: {
+                                                print("ButtonPressed")
+                                                                        })
+                                            {
+                                                                            Image("")
+                                                                        }
+                                            
+                                        }
                                     }
+                
                 
             }
         .navigationBarBackButtonHidden(true)

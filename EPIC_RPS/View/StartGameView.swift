@@ -5,7 +5,7 @@ struct StartGameView: View {
     //MARK: - PROPERTIES
     @ObservedObject var epicManager: GameManager
     @State private var handsAreStretched = false
-   
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
     
     
     //MARK: - BODY
@@ -80,6 +80,7 @@ struct StartGameView: View {
                     }
                 }//: OVERLAY
             }
+            
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
             .overlay(alignment: .bottom){
@@ -87,7 +88,40 @@ struct StartGameView: View {
             }//: OVERLAY
             .ignoresSafeArea()
             
+        
+        }     
+        .navigationBarBackButtonHidden(true)
+        
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                },
+                       label: {
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(.black)
+                    
+                })
+            }
+            ToolbarItem(placement: .principal) {
+                HStack{
+                    Text("Game")
+                        .font(.system(size: 25))
+                        .fontWeight(.medium)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    Button(action: {
+                        print("ButtonPressed")
+                                                }) 
+                    {
+                                                    Image(systemName: "pause.circle")
+                                                        .font(.title)
+                                                        .foregroundColor(.black)
+                                                }
+                    
+                }
+            }
         }
+       
         .onAppear{
             epicManager.ComputerSelectQuestion()
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
