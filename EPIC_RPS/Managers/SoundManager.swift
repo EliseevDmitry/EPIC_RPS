@@ -1,9 +1,5 @@
-//
-//  SoundManager.swift
-//  EPIC_RPS
-//
-//  Created by Юрий on 12.06.2024.
-//
+//SoundManager
+
 
 import Foundation
 import AVFoundation

@@ -1,9 +1,3 @@
-//
-//  ContentView.swift
-//  EPIC_RPS
-//
-//  Created by Dmitriy Eliseev on 09.06.2024.
-//
 
 import SwiftUI
 
@@ -22,7 +16,7 @@ struct SplashView: View {
                             .frame(width: 35, height: 35)
                             .foregroundStyle(.black)
                     }
-                    .padding(.leading, 20)
+                    .padding(.leading, 20)  
                     
                     Spacer()
                     
@@ -50,7 +44,8 @@ struct SplashView: View {
                 }
             }
             .padding(.bottom,20)
-        }
+        } 
+        .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(LinearGradient(
             gradient: Gradient(colors: [.splashBG1, .splashBG2]),

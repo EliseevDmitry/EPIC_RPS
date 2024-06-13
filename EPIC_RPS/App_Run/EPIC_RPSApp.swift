@@ -12,8 +12,10 @@ struct EPIC_RPSApp: App {
     @StateObject var epicManager = GameManager()
     var body: some Scene {
         WindowGroup {
-            StartGameView(epicManager: epicManager)
+           //StartGameView(epicManager: epicManager)
             //SettingsView()
+            //RulesView()
+            SplashView()
         }
     }
 }
