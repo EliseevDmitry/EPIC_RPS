@@ -59,3 +59,7 @@ struct FightLoadView: View {
     }
 }
 
+//MARK: - PREVIEW
+#Preview {
+    FightLoadView()
+}
