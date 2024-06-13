@@ -10,7 +10,7 @@ struct SplashView: View {
             VStack {
                 
                 HStack {
-                    NavigationLink(destination: SettingsView()){
+                    NavigationLink(destination: SettingsView(epicManager: GameManager())){
                         Image(systemName: "gearshape.fill")
                             .resizable()
                             .frame(width: 35, height: 35)

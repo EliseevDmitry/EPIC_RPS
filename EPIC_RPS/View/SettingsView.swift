@@ -1,9 +1,11 @@
-
 import SwiftUI
 
 struct SettingsView: View {
-    
+    //MARK: - PROPERTIES
+    @ObservedObject var epicManager: GameManager
+
     @State private var melodyNumber = 0
+    
     @State private var playWithFriend = false
     @State private var melodyPlayTime = 0
     
@@ -39,6 +41,9 @@ struct SettingsView: View {
                     ForEach(0 ..< melodies.count, id: \.self) { index in
                         Text(melodies[index])
                     }
+                    .pickerStyle(.segmented)
+                    .background(.orange)
+                    .cornerRadius(7)
                 }
                 .onChange(of: melodyNumber) { _ in
                     playMelody.playSound(melodies[melodyNumber])
@@ -69,5 +74,7 @@ struct SettingsView: View {
 
 //MARK: - PREVIEW
 #Preview {
-    SettingsView()
+
+        SettingsView(epicManager: GameManager())
+
 }

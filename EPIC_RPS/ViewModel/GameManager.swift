@@ -2,6 +2,10 @@
 import Foundation
 
 class GameManager: ObservableObject {
+    
+    //временно
+    let playMelody = SoundManager.shared
+    
     @Published var computer: ComputerGame = ComputerGame(
         arr: ["rock","scissors","paper"],
         randomSelect: nil,
@@ -16,7 +20,8 @@ class GameManager: ObservableObject {
     
     @Published var scoreLevels: SaveGameResult = SaveGameResult(
         computerScore: 0,
-        peopleScore: 0
+        peopleScore: 0,
+        melodyNumber: 0
     )
     
     @Published var gameTimer: GameTimer = GameTimer(
@@ -24,6 +29,34 @@ class GameManager: ObservableObject {
         totalTime: 30, 
         gameTime: 30
         )
+    
+    @Published var soundManager: Sounds = Sounds(
+        tracks: ["Мелодия 1", "Мелодия 2", "Мелодия 3"],
+        melodyNumber: 0
+    )
+    
+    func playChangeTracks(at index: Int){
+            playMelody.playSound(soundManager.tracks[index])
+    }
+    
+    //сохранение игры
+    func saveGame(){
+        let encoder = JSONEncoder()
+
+        if let data = try? encoder.encode(scoreLevels) {
+            UserDefaults.standard.set(data, forKey: "resultGame")
+        }
+    }
+    
+    //загрузка игры
+    func loadGame(){
+        let decoder = JSONDecoder()
+        guard let data = UserDefaults.standard.data(forKey: "resultGame") else { return }
+        guard let loadData = try? decoder.decode(SaveGameResult.self, from: data) else {return}
+        scoreLevels.computerScore = loadData.computerScore
+        scoreLevels.peopleScore = loadData.peopleScore
+        scoreLevels.melodyNumber = loadData.melodyNumber
+    }
     
     func ComputerSelectQuestion(){
         computer.randomSelect = Int.random(in: 0...2)
