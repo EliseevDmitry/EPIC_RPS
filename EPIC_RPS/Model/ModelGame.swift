@@ -25,13 +25,19 @@ struct PeopleGame {
     var score: Int
 }
 
-struct SaveGameResult{
+struct SaveGameResult: Codable {
     var computerScore: Int
     var peopleScore: Int
+    var melodyNumber: Int
 }
 
 struct GameTimer{
     var isStop: Bool
     let totalTime: Float
     var gameTime: Float
+}
+
+struct Sounds{
+    let tracks: [String]
+    let melodyNumber: Int
 }
