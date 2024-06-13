@@ -1,6 +1,5 @@
 
 import Foundation
-// Норм что импортим?
 import SwiftUI
 
 class GameManager: ObservableObject {
