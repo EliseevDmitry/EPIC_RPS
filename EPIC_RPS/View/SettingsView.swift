@@ -1,6 +1,4 @@
-
-
-
+import SwiftUI
 
 struct SettingsView: View {
     //MARK: - PROPERTIES
