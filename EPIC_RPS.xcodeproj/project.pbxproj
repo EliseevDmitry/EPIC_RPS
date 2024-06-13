@@ -28,6 +28,7 @@
 		9216F74E2C1A0D3800A355A6 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9216F74D2C1A0D3800A355A6 /* SoundManager.swift */; };
 		924A1CC32C17473800C0488B /* GameControlButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A1CC22C17473800C0488B /* GameControlButtons.swift */; };
 		924A1CC52C175C3400C0488B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924A1CC42C175C3400C0488B /* SettingsView.swift */; };
+		92E875552C1B23EB0043023F /* Udar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 92E875542C1B23EB0043023F /* Udar.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		9216F74D2C1A0D3800A355A6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		924A1CC22C17473800C0488B /* GameControlButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControlButtons.swift; sourceTree = "<group>"; };
 		924A1CC42C175C3400C0488B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		92E875542C1B23EB0043023F /* Udar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Udar.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				262FEF122C15EB09008F8CF8 /* Preview Assets.xcassets */,
+				264228612C1A10AF005D8E83 /* Мелодия 1.mp3 */,
+				264228632C1A10B1005D8E83 /* Мелодия 2.mp3 */,
+				264228622C1A10B0005D8E83 /* Мелодия 3.mp3 */,
+				92E875542C1B23EB0043023F /* Udar.mp3 */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -233,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				264228662C1A10B1005D8E83 /* Мелодия 2.mp3 in Resources */,
+				92E875552C1B23EB0043023F /* Udar.mp3 in Resources */,
 				264228642C1A10B1005D8E83 /* Мелодия 1.mp3 in Resources */,
 				262FEF132C15EB09008F8CF8 /* Preview Assets.xcassets in Resources */,
 				262FEF102C15EB09008F8CF8 /* Assets.xcassets in Resources */,
