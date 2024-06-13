@@ -60,8 +60,7 @@ struct SettingsView: View {
                 ToolbarItem(placement: .principal) {
                     Text("Settings").font(.title)
                 }
-            }
-            
+            } 
         }
     }
 }
