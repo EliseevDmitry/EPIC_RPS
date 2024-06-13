@@ -1,8 +1,14 @@
 
 import Foundation
+// Норм что импортим?
+import SwiftUI
 
 class GameManager: ObservableObject {
     
+    @Published var currentTopHand = Image(.femaleHand)
+    @Published var currentBottomHand = Image(.maleHand)
+    @Published var showClash = false
+    @Published var topPlayerWin = false
     //временно
     let playMelody = SoundManager.shared
     
@@ -13,7 +19,7 @@ class GameManager: ObservableObject {
     )
     
     @Published var people: PeopleGame = PeopleGame(
-        arr: ["rock","scissors","paper"], 
+        arr: ["rock","scissors","paper"],
         select: nil,
         score: 0
     )
@@ -26,9 +32,9 @@ class GameManager: ObservableObject {
     
     @Published var gameTimer: GameTimer = GameTimer(
         isStop: false,
-        totalTime: 30, 
+        totalTime: 30,
         gameTime: 30
-        )
+    )
     
     @Published var soundManager: Sounds = Sounds(
         tracks: ["Мелодия 1", "Мелодия 2", "Мелодия 3"],
@@ -62,32 +68,49 @@ class GameManager: ObservableObject {
         computer.randomSelect = Int.random(in: 0...2)
     }
     
-    func StartGame(data: ChoseData){
-        print("сработала кнопка - \(data)")
-        if computer.randomSelect != nil {
-            if draw(data: data) {
-                //отработка ничьей
-            } else {
-                if winOrLose(data: data) {
-                    //выиграл человек
-                    addScorePeople()
-                    print("Выиграл человек")
-                    if chooseWin() {
-                        
+    func StartGame(data: ChoseData) {
+            // Отображаем выбор пользователя
+            print("сработала кнопка - \(data)")
+            
+            // Проверяем, что компьютер сделал выбор
+            if let computerChoice = computer.randomSelect {
+                if draw(data: data) {
+                    // Отработка ничьей
+                    withAnimation(.easeInOut(duration: 1)) {
+                        updateHands(for: data, computerChoice: computerChoice)
+                        showClash = false
                     }
                 } else {
-                    //выиграл компьютер
-                    addScoreComputer()
-                    print("Выиграл компьютер")
-                    if chooseWin() {
-                        
+                    // Проверяем, выиграл ли пользователь
+                    if winOrLose(data: data) {
+                        addScorePeople()
+                        print("Выиграл человек")
+                        topPlayerWin = false // Пользователь внизу
+                    } else {
+                        // Если нет, то выиграл компьютер
+                        addScoreComputer()
+                        print("Выиграл компьютер")
+                        topPlayerWin = true // Компьютер вверху
+                    }
+                    
+                    // Обновляем руки и анимацию для выигрыша/проигрыша
+                    withAnimation(.easeInOut(duration: 1)) {
+                        updateHands(for: data, computerChoice: computerChoice)
+                        showClash = true
+                    }
+                    
+                    // Сброс анимации после задержки
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withAnimation(.easeInOut(duration: 1)) {
+                            self.showClash = false
+                        }
                     }
                 }
             }
+            // Компьютер снова выбирает значение для следующего раунда
+            ComputerSelectQuestion()
+            print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
         }
-        ComputerSelectQuestion()
-        print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
-    }
     
     func draw(data: ChoseData)->Bool{
         if let index = computer.randomSelect {
@@ -142,11 +165,42 @@ class GameManager: ObservableObject {
         ComputerSelectQuestion()
         people.score = 0
         people.select = nil
+        currentBottomHand = Image(.maleHand)
+        currentTopHand = Image(.femaleHand)
     }
     
+    func updateHands(for data: ChoseData, computerChoice: Int) {
+        
+        switch data {
+        case .rock:
+            if computerChoice == 1 {
+                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandScissors))
+            } else {
+                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandPaper))
+            }
+        case .paper:
+            if computerChoice == 0 {
+                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandRock))
+            } else {
+                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandScissors))
+            }
+        case .scissors:
+            if computerChoice == 0 {
+                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandRock))
+            } else {
+                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandPaper))
+            }
+        }
+        
+        
+        func updateHands( top: Image, bottom: Image) {
+            currentBottomHand = bottom
+            currentTopHand = top
+        }
+        
     }
     
-    
+}
     
 //    static func testState()->GameManager {
 //        let manager = GameManager()

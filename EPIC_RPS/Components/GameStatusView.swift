@@ -1,10 +1,3 @@
-//
-//  GameStatusView.swift
-//  EPIC_RPS
-//
-//  Created by Dmitriy Eliseev on 10.06.2024.
-//
-
 import SwiftUI
 
 struct GameStatusView: View {

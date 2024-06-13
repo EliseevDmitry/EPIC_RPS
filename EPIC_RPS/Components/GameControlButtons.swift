@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+// Правильно исп дженерик?
 
 struct GameControlButtons<Destination: View>: View {
     
