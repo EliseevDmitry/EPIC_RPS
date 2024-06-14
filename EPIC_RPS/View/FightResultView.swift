@@ -47,6 +47,7 @@ struct FightResultView: View {
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
+                        
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
@@ -54,6 +55,7 @@ struct FightResultView: View {
                     
                     Button {
 //                        presentationMode.wrappedValue.dismiss()
+                        
                         showStartGameView = true
                     } label: {
                         Image(.restart)
@@ -62,6 +64,9 @@ struct FightResultView: View {
                 .padding()
             }
             .navigationBarBackButtonHidden()
+        }//: ZStack
+        .onAppear{
+            epicManager.gameTimer.isStop = false
         }
         
     }

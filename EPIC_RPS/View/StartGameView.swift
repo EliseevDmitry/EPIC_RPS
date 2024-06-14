@@ -11,7 +11,7 @@ struct StartGameView: View {
     //MARK: - BODY
     var body: some View {
         
-        NavigationView {
+       // NavigationView {
             VStack {
                 ZStack{
                     Image(.fill1)
@@ -79,7 +79,10 @@ struct StartGameView: View {
                         }
                     }
                 }//: OVERLAY
-            }
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
+                                    EmptyView()
+                                }
+            }//:
             
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
@@ -87,12 +90,8 @@ struct StartGameView: View {
                 GameButtons(epicManager: epicManager)
             }//: OVERLAY
             .ignoresSafeArea()
-            
-//            NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
-//                                EmptyView()
-//                            }
 
-        }//: NAVVIEW
+//        }//: NAVVIEW
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
