@@ -1,10 +1,3 @@
-//
-//  GameControlButtons.swift
-//  EPIC_RPS
-//
-//  Created by Daniil Murzin on 10.06.2024.
-//
-
 import SwiftUI
 // Правильно исп дженерик?
 

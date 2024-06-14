@@ -1,11 +1,3 @@
-//
-//  GameButtons.swift
-//  EPIC_RPS
-//
-//  Created by Dmitriy Eliseev on 11.06.2024.
-//
-
-
 import SwiftUI
 
 struct SelectedButton: View {

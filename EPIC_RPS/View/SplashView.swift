@@ -52,11 +52,10 @@ struct SplashView: View {
             endPoint: .bottom
         ))
     }
-    //MARK: - FUNCTIONS
-    
+
 }
 
-//MARK: - PREVIEW
+
 #Preview {
     SplashView(epicManager: GameManager())
 }
