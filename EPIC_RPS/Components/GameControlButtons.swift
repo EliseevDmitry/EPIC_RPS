@@ -8,7 +8,7 @@ struct GameControlButtons<Destination: View>: View {
     
     var body: some View {
         
-        NavigationLink(destination: destination) {
+        NavigationLink(destination: destination.navigationBarBackButtonHidden(true)) {
             ZStack {
                 Image(.controllButtonBG)
                     .resizable()
