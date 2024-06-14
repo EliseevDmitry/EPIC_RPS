@@ -41,7 +41,7 @@ struct SplashView: View {
                 
                 VStack(spacing: 15) {
                     GameControlButtons(buttonText: "Start game", destination: FightLoadView(epicManager: epicManager))
-                    GameControlButtons(buttonText: "Results",destination: FightResultView())
+                    GameControlButtons(buttonText: "Results",destination: FightResultView(epicManager: epicManager))
                 }
             }
             .padding(.bottom,20)

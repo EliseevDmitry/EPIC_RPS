@@ -5,6 +5,7 @@ struct FightResultView: View {
     //MARK: - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
     @State private var showStartGameView = false
+    @ObservedObject var epicManager: GameManager
     
     var winOrLose = true
     let yourScore = GameManager().scoreLevels.peopleScore
@@ -12,7 +13,7 @@ struct FightResultView: View {
     
     //MARK: - BODY
     var body: some View {
-        NavigationLink(destination: StartGameView(epicManager: .init()), isActive: $showStartGameView) {
+        NavigationLink(destination: StartGameView(epicManager: epicManager), isActive: $showStartGameView) {
                             EmptyView()
                         }
         ZStack {
@@ -68,5 +69,5 @@ struct FightResultView: View {
 
 //MARK: - PREVIEW
 #Preview {
-    FightResultView()
+    FightResultView( epicManager: GameManager())
 }

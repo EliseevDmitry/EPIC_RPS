@@ -28,10 +28,9 @@ struct TimerView: View {
                     .font(.system(size: 12))
                     .foregroundStyle(.white)
                 
-//                NavigationLink("", isActive: $epicManager.gameTimer.isStop) {
-//                    FightResultView().navigationBarBackButtonHidden()
-//                }
-                                
+//                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
+//                                    EmptyView()
+//                                }
             }
             .onReceive(self.time, perform: { time in
                 if !epicManager.gameTimer.isStop{
