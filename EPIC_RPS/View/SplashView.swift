@@ -2,8 +2,10 @@
 import SwiftUI
 
 struct SplashView: View {
+
     @ObservedObject var epicManager: GameManager
     //MARK: - BODY
+
     var body: some View {
         NavigationView {
             VStack {
