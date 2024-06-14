@@ -107,9 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				262FEF122C15EB09008F8CF8 /* Preview Assets.xcassets */,
-				264228612C1A10AF005D8E83 /* Мелодия 1.mp3 */,
-				264228632C1A10B1005D8E83 /* Мелодия 2.mp3 */,
-				264228622C1A10B0005D8E83 /* Мелодия 3.mp3 */,
 				92E875542C1B23EB0043023F /* Udar.mp3 */,
 			);
 			path = "Preview Content";
