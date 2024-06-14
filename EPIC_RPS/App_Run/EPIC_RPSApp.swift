@@ -9,7 +9,7 @@ struct EPIC_RPSApp: App {
         WindowGroup {
             //MARK: - VIEWS run codebase separately
             
-             SplashView(epicManager: epicManager)
+            SplashView(epicManager: epicManager)
             //RulesView()
             //FightLoadView()
             // StartGameView(epicManager: GameManager())
@@ -21,7 +21,8 @@ struct EPIC_RPSApp: App {
             // GameStatusView(barTotal: 30, barValueOne: 1, barValueTwo: 2)
             //TimerView(epicManager: GameManager())
             //GameButtons(epicManager: GameManager())
-
+            
+            //SplashView(epicManager: epicManager)
         }
     }
 }
