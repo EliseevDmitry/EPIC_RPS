@@ -2,12 +2,16 @@
 import SwiftUI
 
 struct SplashView: View {
+
+    @ObservedObject var epicManager: GameManager
+    //MARK: - BODY
+
     var body: some View {
         NavigationView {
             VStack {
                 
                 HStack {
-                    NavigationLink(destination: SettingsView(epicManager: GameManager())){
+                    NavigationLink(destination: SettingsView(epicManager: epicManager)){
                         Image(systemName: "gearshape.fill")
                             .resizable()
                             .frame(width: 35, height: 35)
@@ -55,5 +59,5 @@ struct SplashView: View {
 
 
 #Preview {
-    SplashView()
+    SplashView(epicManager: GameManager())
 }

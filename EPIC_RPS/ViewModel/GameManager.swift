@@ -37,11 +37,28 @@ class GameManager: ObservableObject {
     
     @Published var soundManager: Sounds = Sounds(
         tracks: ["Мелодия 1", "Мелодия 2", "Мелодия 3"],
-        melodyNumber: 0
+        melodyNumber: 0,
+        timeTrack: 2,
+        indexTrack: 0
     )
     
+    
+    
     func playChangeTracks(at index: Int){
-            playMelody.playSound(soundManager.tracks[index])
+        playMelody.playSound(soundManager.tracks[index], timeInterval: soundManager.timeTrack)
+        soundManager.melodyNumber = index
+    }
+    
+    //для тестирования - 1 и 3 секунды
+    func timeChangeTracks(at index: Int){
+        switch index {
+        case 0: soundManager.timeTrack = 1
+            soundManager.indexTrack = index
+        case 1: soundManager.timeTrack = 5
+            soundManager.indexTrack = index
+        default:
+            return
+        }
     }
     
     //сохранение игры
@@ -50,6 +67,9 @@ class GameManager: ObservableObject {
 
         if let data = try? encoder.encode(scoreLevels) {
             UserDefaults.standard.set(data, forKey: "resultGame")
+        }
+        if let sondData = try? encoder.encode(soundManager) {
+            UserDefaults.standard.set(sondData, forKey: "soundGame")
         }
     }
     
@@ -61,6 +81,10 @@ class GameManager: ObservableObject {
         scoreLevels.computerScore = loadData.computerScore
         scoreLevels.peopleScore = loadData.peopleScore
         scoreLevels.melodyNumber = loadData.melodyNumber
+        guard let sondData = UserDefaults.standard.data(forKey: "soundGame") else { return }
+        guard let loadSoundData = try? decoder.decode(Sounds.self, from: sondData) else {return}
+        soundManager.indexTrack = loadSoundData.indexTrack
+        soundManager.melodyNumber = loadSoundData.melodyNumber
     }
     
     func ComputerSelectQuestion(){

@@ -31,7 +31,9 @@ struct GameTimer{
     var gameTime: Float
 }
 
-struct Sounds{
+struct Sounds: Codable{
     let tracks: [String]
-    let melodyNumber: Int
+    var melodyNumber: Int
+    var timeTrack: Int
+    var indexTrack: Int
 }
