@@ -114,12 +114,12 @@ struct StartGameView: View {
                     Button(action: {
                         epicManager.gameTimer.isStop.toggle()
                         print("ButtonPressed")
-                                                }) 
+                    })
                     {
-                                                    Image(systemName: "pause.circle")
-                                                        .font(.title)
-                                                        .foregroundColor(.black)
-                                                }
+                        Image(systemName: "pause.circle")
+                            .font(.title)
+                            .foregroundColor(.black)
+                    }
                     
                 }
             }
@@ -143,23 +143,25 @@ struct StartGameView: View {
                             .scaledToFit()
                             .frame(width: 300, height: 300)
                             .padding(.bottom, -250)
-                        Image(.femaleHandScissors)
+                        epicManager.currentTopHand
                             .resizable()
                             .scaledToFit()
                             .frame(width: 155, height: 650)
                             .padding(.top, -350)
                         
                     } else {
+                        
                         Image(.blood)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 300)
                             .padding(.bottom, -250)
-                        Image(.maleHandRock)
+                        epicManager.currentBottomHand
                             .resizable()
                             .scaledToFit()
                             .frame(width: 155, height: 650)
                             .padding(.bottom, -350)
+                        
                         
                     }
                 }

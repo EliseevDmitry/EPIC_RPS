@@ -18,6 +18,7 @@ struct SettingsView: View {
     }) {
         Image(systemName: "chevron.backward")
             .aspectRatio(contentMode: .fit)
+            .foregroundColor(.black)
         }
     }
 
