@@ -88,9 +88,9 @@ struct StartGameView: View {
             }//: OVERLAY
             .ignoresSafeArea()
             
-            NavigationLink(destination: FightResultView().navigationBarBackButtonHidden(true), isActive: $epicManager.gameTimer.isStop) {
-                EmptyView()
-            }
+                            NavigationLink("", isActive: $epicManager.gameTimer.isStop) {
+                                FightResultView().navigationBarBackButtonHidden()
+                            }
 
         }//: NAVVIEW
         .navigationBarBackButtonHidden(true)
