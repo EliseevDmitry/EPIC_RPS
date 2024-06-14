@@ -18,9 +18,9 @@ struct StartGameView: View {
                         .resizable()
                         .scaledToFit()
                     HStack{
-                        TimerView(epicManager: epicManager)
-                            .frame(height: 300)
-                            .padding(.leading, 5)
+//                        TimerView(epicManager: epicManager)
+//                            .frame(height: 300)
+//                            .padding(.leading, 5)
                         Spacer()
                         Text("Fight")
                             .textCase(.uppercase)
@@ -79,7 +79,14 @@ struct StartGameView: View {
                         }
                     }
                 }//: OVERLAY
-                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
+                
+                //когда выигрывает комп (epicManager.computer.win - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.computer.win) {
+                                    EmptyView()
+                                }
+                
+                //когда выигрывает человек (epicManager.people.win - - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.people.win) {
                                     EmptyView()
                                 }
             }//:
