@@ -33,8 +33,8 @@ class GameManager: ObservableObject {
     
     @Published var gameTimer: GameTimer = GameTimer(
         isStop: false,
-        totalTime: 30,
-        gameTime: 30
+        totalTime: 5,
+        gameTime: 5
     )
     
     @Published var soundManager: Sounds = Sounds(
@@ -170,11 +170,15 @@ class GameManager: ObservableObject {
     
     func addScoreComputer(){
         computer.score += 1
+        
     }
     
     func addScorePeople(){
         people.score += 1
+        
     }
+    
+    
     
     func chooseWin() -> Bool{
         if computer.score == 3 {
@@ -247,6 +251,7 @@ class GameManager: ObservableObject {
             self.navigate = true
         }
     }
+    
     
 }
     

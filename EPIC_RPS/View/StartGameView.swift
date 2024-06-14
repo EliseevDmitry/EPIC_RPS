@@ -88,10 +88,12 @@ struct StartGameView: View {
             }//: OVERLAY
             .ignoresSafeArea()
             
-        
-        }     
+            NavigationLink(destination: FightResultView().navigationBarBackButtonHidden(true), isActive: $epicManager.gameTimer.isStop) {
+                EmptyView()
+            }
+
+        }//: NAVVIEW
         .navigationBarBackButtonHidden(true)
-        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
@@ -110,6 +112,7 @@ struct StartGameView: View {
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity, alignment: .center)
                     Button(action: {
+                        epicManager.gameTimer.isStop.toggle()
                         print("ButtonPressed")
                     })
                     {

@@ -11,12 +11,24 @@ struct ComputerGame {
     let arr: [String]
     var randomSelect: Int?
     var score: Int
+    var win: Bool {
+        if score == 3 {
+            return true
+        }
+        return false
+    }
 }
 
 struct PeopleGame {
     let arr: [String]
     var select: Int?
     var score: Int
+    var win: Bool {
+        if score == 3 {
+            return true
+        }
+        return false
+    }
 }
 
 struct SaveGameResult: Codable {
