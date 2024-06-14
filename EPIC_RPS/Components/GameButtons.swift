@@ -7,7 +7,7 @@ struct SelectedButton: View {
     
     let image: ImageResource
     let data: ChoseData
-    
+//
     var body: some View {
         ZStack{
             Circle()
