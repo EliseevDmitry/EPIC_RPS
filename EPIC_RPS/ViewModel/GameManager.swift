@@ -119,9 +119,12 @@ class GameManager: ObservableObject {
                     }
                     
                     // Обновляем руки и анимацию для выигрыша/проигрыша
-                    withAnimation(.easeInOut(duration: 1)) {
-                        updateHands(for: data, computerChoice: computerChoice)
-                        showClash = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation(.easeInOut(duration: 1)) {
+                            self.updateHands(for: data, computerChoice: computerChoice)
+                            self.showClash = true
+                            self.playMelody.playSound("Udar", timeInterval: 1)
+                        }
                     }
                     
                     // Сброс анимации после задержки
@@ -194,36 +197,46 @@ class GameManager: ObservableObject {
         currentTopHand = Image(.femaleHand)
     }
     
+   
+    
     func updateHands(for data: ChoseData, computerChoice: Int) {
-        
         switch data {
         case .rock:
-            if computerChoice == 1 {
-                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandScissors))
-            } else {
-                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandPaper))
+            if computerChoice == 1 { // Компьютер выбрал ножницы
+                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandRock))
+            } else if computerChoice == 0 { // Компьютер выбрал камень
+                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandRock))
+            } else { // Компьютер выбрал бумагу
+                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandRock))
             }
         case .paper:
-            if computerChoice == 0 {
-                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandRock))
-            } else {
-                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandScissors))
+            if computerChoice == 0 { // Компьютер выбрал камень
+                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandPaper))
+            } else if computerChoice == 1 { // Компьютер выбрал ножницы
+                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandPaper))
+            } else { // Ничья бумага
+                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandPaper))
             }
         case .scissors:
             if computerChoice == 0 {
-                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandRock))
+                // Компьютер выбрал камень
+                updateHands(top: Image(.femaleHandRock), bottom: Image(.maleHandScissors))
+            } else if computerChoice == 1 {
+                // Оба выбрали ножницы
+                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandScissors))
             } else {
-                updateHands(top: Image(.femaleHandScissors), bottom: Image(.maleHandPaper))
+                // Компьютер бумага
+                updateHands(top: Image(.femaleHandPaper), bottom: Image(.maleHandScissors))
             }
         }
-        
+    }
         
         func updateHands( top: Image, bottom: Image) {
             currentBottomHand = bottom
             currentTopHand = top
         }
         
-    }
+    
     
     func toggleAnimation() {
         isAnimating.toggle()
