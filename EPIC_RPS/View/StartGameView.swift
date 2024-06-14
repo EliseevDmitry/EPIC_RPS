@@ -91,7 +91,7 @@ struct StartGameView: View {
                     EmptyView()
                         .onAppear {
                             if epicManager.computer.win {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     epicManager.computer.win = true
                                 }
                             }
@@ -101,8 +101,16 @@ struct StartGameView: View {
                 
                 //когда выигрывает человек (epicManager.people.win - - true)
                 NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.people.win) {
-                                    EmptyView()
-                                }
+                    EmptyView()
+                }                      
+                .onAppear {
+                    if epicManager.computer.win {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            epicManager.computer.win = true
+                        }
+                    }
+                }
+
             }//:
             
             .frame(maxWidth: .infinity, maxHeight: .infinity)

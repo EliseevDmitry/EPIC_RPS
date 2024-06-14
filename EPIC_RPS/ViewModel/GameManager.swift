@@ -39,8 +39,8 @@ class GameManager: ObservableObject {
     
     @Published var gameTimer: GameTimer = GameTimer(
         isStop: false,
-        totalTime: 5,
-        gameTime: 5
+        totalTime: 15,
+        gameTime: 15
     )
     
     @Published var soundManager: Sounds = Sounds(
@@ -220,15 +220,17 @@ class GameManager: ObservableObject {
         ComputerSelectQuestion()
         people.score = 0
         people.select = nil
-        computer.win = false
-        people.win = false
         gameTimer.isStop = true //ОБЯЗАТЕЛЬНО ТУТ true
-        gameTimer.gameTime = 5
+        gameTimer.gameTime = 15
         currentBottomHand = Image(.maleHand)
         currentTopHand = Image(.femaleHand)
         winLabel = "FIGHT"
     }
     
+    func resetScore() {
+        computer.win = false
+        people.win = false
+    }
    
     
     func updateHands(for data: ChoseData, computerChoice: Int) {

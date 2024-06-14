@@ -15,10 +15,11 @@ struct FightResultView: View {
     
     //MARK: - BODY
     var body: some View {
-        NavigationLink(destination: FightLoadView(epicManager: epicManager), isActive: $showStartGameView) {
+        
+        NavigationLink(destination: StartGameView(epicManager: epicManager).navigationBarBackButtonHidden(), isActive: $showStartGameView) {
                             EmptyView()
                         }
-        NavigationLink(destination: StartGameView(epicManager: epicManager), isActive: $showSplashView) {
+        NavigationLink(destination: SplashView(epicManager: epicManager), isActive: $showSplashView) {
                             EmptyView()
                         }
         ZStack {
@@ -57,12 +58,13 @@ struct FightResultView: View {
                     Button {
                         epicManager.gameTimer.isStop = false
                         showSplashView = true
+                        epicManager.resetScore()
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
-//                        presentationMode.wrappedValue.dismiss()
+                        epicManager.resetScore()
                         epicManager.gameTimer.isStop = false
                         showStartGameView = true
                     } label: {
