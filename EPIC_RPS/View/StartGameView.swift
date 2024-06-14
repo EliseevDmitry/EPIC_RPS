@@ -18,9 +18,9 @@ struct StartGameView: View {
                         .resizable()
                         .scaledToFit()
                     HStack{
-//                        TimerView(epicManager: epicManager)
-//                            .frame(height: 300)
-//                            .padding(.leading, 5)
+                        TimerView(epicManager: epicManager)
+                            .frame(height: 300)
+                            .padding(.leading, 5)
                         Spacer()
                         Text("Fight")
                             .textCase(.uppercase)

@@ -205,7 +205,8 @@ class GameManager: ObservableObject {
         people.select = nil
         computer.win = false
         people.win = false
-        gameTimer.isStop = false
+        gameTimer.isStop = true //ОБЯЗАТЕЛЬНО ТУТ true
+        gameTimer.gameTime = 5
         currentBottomHand = Image(.maleHand)
         currentTopHand = Image(.femaleHand)
     }
