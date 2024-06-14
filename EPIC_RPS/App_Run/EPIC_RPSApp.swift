@@ -22,7 +22,7 @@ struct EPIC_RPSApp: App {
             //TimerView(epicManager: GameManager())
             //GameButtons(epicManager: GameManager())
             
-            SplashView(epicManager: epicManager)
+            //SplashView(epicManager: epicManager)
         }
     }
 }
