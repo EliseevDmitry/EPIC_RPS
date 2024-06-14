@@ -16,9 +16,9 @@ struct SettingsView: View {
     var backButton : some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {
-        Image(.arrow)
+        Image(systemName: "chevron.backward")
             .aspectRatio(contentMode: .fit)
-    }
+            .foregroundColor(.black)
     }
     
     var body: some View {
