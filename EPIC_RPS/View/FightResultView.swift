@@ -4,13 +4,17 @@ import SwiftUI
 struct FightResultView: View {
     //MARK: - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
+    @State private var showStartGameView = false
     
     var winOrLose = true
-    let yourScore = 3
-    let computerScore = 1
+    let yourScore = GameManager().scoreLevels.peopleScore
+    let computerScore = GameManager().scoreLevels.computerScore
     
     //MARK: - BODY
     var body: some View {
+        NavigationLink(destination: StartGameView(epicManager: .init()), isActive: $showStartGameView) {
+                            EmptyView()
+                        }
         ZStack {
             RadialGradient(
                 gradient: Gradient(colors: winOrLose ?
@@ -48,7 +52,8 @@ struct FightResultView: View {
                     }
                     
                     Button {
-                        print("restart")
+//                        presentationMode.wrappedValue.dismiss()
+                        showStartGameView = true
                     } label: {
                         Image(.restart)
                     }
