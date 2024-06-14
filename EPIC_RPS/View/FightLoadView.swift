@@ -23,7 +23,7 @@ struct FightLoadView: View {
                             .rotationEffect(.degrees(epicManager.isAnimating ? 360 : 0))
                             .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                         
-                        Text("10 Victories/\n2 Lose")
+                        Text("\(epicManager.scoreLevels.computerScore) Victories/\n \(epicManager.scoreLevels.computerScore) Lose")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -47,11 +47,14 @@ struct FightLoadView: View {
                             .rotationEffect(.degrees(epicManager.isAnimating ? 360 : 0))
                             .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                         
-                        Text("23 Victories/\n1 Lose")
+                        Text("\(epicManager.scoreLevels.peopleScore) Victories/\n \(epicManager.scoreLevels.computerScore) Lose")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .multilineTextAlignment(.center)
+                            .onAppear{
+                                epicManager.loadGame()
+                            }
                     }
                     
                     Spacer()
