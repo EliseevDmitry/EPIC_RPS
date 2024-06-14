@@ -63,6 +63,7 @@ struct FightLoadView: View {
                         .scaleEffect(epicManager.isAnimating ? 1.3 : 1.0)
                         .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                     
+
                     NavigationLink(destination: StartGameView(epicManager: GameManager()).navigationBarBackButtonHidden(true), isActive: $epicManager.navigate) {
                         EmptyView()
                     }
