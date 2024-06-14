@@ -8,23 +8,17 @@ struct FightResultView: View {
     @State private var showSplashView = false
     @ObservedObject var epicManager: GameManager
     
-    
-    var winOrLose = true
-    let yourScore = GameManager().scoreLevels.peopleScore
-    let computerScore = GameManager().scoreLevels.computerScore
-    
     //MARK: - BODY
     var body: some View {
         
-        NavigationLink(destination: StartGameView(epicManager: epicManager).navigationBarBackButtonHidden(), isActive: $showStartGameView) {
-                            EmptyView()
-                        }
-        NavigationLink(destination: SplashView(epicManager: epicManager), isActive: $showSplashView) {
-                            EmptyView()
-                        }
+        NavigationLink(destination: StartGameView(epicManager: epicManager)
+            .navigationBarBackButtonHidden(), isActive: $showStartGameView) { }
+        
+        NavigationLink(destination: SplashView(epicManager: epicManager), isActive: $showSplashView) { }
+        
         ZStack {
             RadialGradient(
-                gradient: Gradient(colors: winOrLose ?
+                gradient: Gradient(colors: epicManager.people.win ?
                                    [Color(hex: 0x2D2599), Color(hex: 0x656DF4)]
                                    : [Color(hex: 0xFFB600), Color(hex: 0xEE413C)]),
                 center: .center,
@@ -38,19 +32,16 @@ struct FightResultView: View {
                     Circle()
                         .fill(Color(hex: 0x2B2870))
                     .frame(width: 176, height: 176)
-                    Image(winOrLose ? .player2 : .player1)
+                    Image(epicManager.people.win ? .player2 : .player1)
                         .resizable()
                         .frame(width: 66.89, height: 77.9)
                 }
-                //Text(winOrLose ? "You Win" : "You Lose")
-                Text(epicManager.computer.win ? "You Win" : "You Lose") // - логику
+                Text(epicManager.people.win ? "You Win" : "You Lose")
                     .font(.title2)
                     .bold()
-                    .foregroundStyle(winOrLose ? Color(hex: 0xFFB24C) : .black)
+                    .foregroundStyle(epicManager.people.win ? Color(hex: 0xFFB24C) : .black)
                 
-                Text("\(yourScore) - \(epicManager.computer.score)")
-                //Text("\(yourScore) - \(computerScore)")
-                //scoreLevels.computerScore
+                Text("\(epicManager.people.score) - \(epicManager.computer.score)")
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.white)
@@ -59,6 +50,7 @@ struct FightResultView: View {
                         epicManager.gameTimer.isStop = false
                         showSplashView = true
                         epicManager.resetScore()
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
                     }
@@ -67,6 +59,7 @@ struct FightResultView: View {
                         epicManager.resetScore()
                         epicManager.gameTimer.isStop = false
                         showStartGameView = true
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.restart)
                     }
@@ -74,7 +67,7 @@ struct FightResultView: View {
                 .padding()
             }
             .navigationBarBackButtonHidden()
-        }//: ZStack
+        }
         .onAppear{
             epicManager.restartGame()
         }
