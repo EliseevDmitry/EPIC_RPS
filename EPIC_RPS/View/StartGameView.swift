@@ -11,16 +11,16 @@ struct StartGameView: View {
     //MARK: - BODY
     var body: some View {
         
-        NavigationView {
+       // NavigationView {
             VStack {
                 ZStack{
                     Image(.fill1)
                         .resizable()
                         .scaledToFit()
                     HStack{
-                        TimerView(epicManager: epicManager)
-                            .frame(height: 300)
-                            .padding(.leading, 5)
+//                        TimerView(epicManager: epicManager)
+//                            .frame(height: 300)
+//                            .padding(.leading, 5)
                         Spacer()
                         Text("Fight")
                             .textCase(.uppercase)
@@ -79,7 +79,17 @@ struct StartGameView: View {
                         }
                     }
                 }//: OVERLAY
-            }
+                
+                //когда выигрывает комп (epicManager.computer.win - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.computer.win) {
+                                    EmptyView()
+                                }
+                
+                //когда выигрывает человек (epicManager.people.win - - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.people.win) {
+                                    EmptyView()
+                                }
+            }//:
             
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
@@ -87,12 +97,8 @@ struct StartGameView: View {
                 GameButtons(epicManager: epicManager)
             }//: OVERLAY
             .ignoresSafeArea()
-            
-//            NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
-//                                EmptyView()
-//                            }
 
-        }//: NAVVIEW
+//        }//: NAVVIEW
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

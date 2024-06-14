@@ -36,17 +36,21 @@ struct FightResultView: View {
                         .resizable()
                         .frame(width: 66.89, height: 77.9)
                 }
-                Text(winOrLose ? "You Win" : "You Lose")
+                //Text(winOrLose ? "You Win" : "You Lose")
+                Text(epicManager.computer.win ? "You Win" : "You Lose") // - логику
                     .font(.title2)
                     .bold()
                     .foregroundStyle(winOrLose ? Color(hex: 0xFFB24C) : .black)
                 
-                Text("\(yourScore) - \(computerScore)")
+                Text("\(yourScore) - \(epicManager.computer.score)")
+                //Text("\(yourScore) - \(computerScore)")
+                //scoreLevels.computerScore
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
+                        
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
@@ -54,6 +58,7 @@ struct FightResultView: View {
                     
                     Button {
 //                        presentationMode.wrappedValue.dismiss()
+                        
                         showStartGameView = true
                     } label: {
                         Image(.restart)
@@ -62,6 +67,15 @@ struct FightResultView: View {
                 .padding()
             }
             .navigationBarBackButtonHidden()
+        }//: ZStack
+        .onAppear{
+//            if !epicManager.people.win {
+//                epicManager.people.win.toggle()
+//            }
+//            if !epicManager.computer.win {
+//                epicManager.computer.win.toggle()
+//            }
+            epicManager.restartGame()
         }
         
     }

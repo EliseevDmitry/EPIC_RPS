@@ -13,45 +13,49 @@ struct TimerView: View {
     @State private var index: CGFloat = 1.0
     
     var body: some View {
-            VStack{
-                GeometryReader { screen in
-                    ZStack(alignment: .bottom){
-                        RoundedRectangle(cornerRadius: .infinity)
-                            .foregroundStyle(.timerempty)
-                        RoundedRectangle(cornerRadius: .infinity)
-                            .foregroundStyle(.timerfull)
-                            .frame(height: (screen.size.height * CGFloat(self.index)))
-                    }//: ZSTACK ProgressBar
-                }
-                .frame(width: 12)
-                Text("0:\(epicManager.gameTimer.gameTime.formatted())")
-                    .font(.system(size: 12))
-                    .foregroundStyle(.white)
-                
-//                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
-//                                    EmptyView()
-//                                }
+        VStack{
+            GeometryReader { screen in
+                ZStack(alignment: .bottom){
+                    RoundedRectangle(cornerRadius: .infinity)
+                        .foregroundStyle(.timerempty)
+                    RoundedRectangle(cornerRadius: .infinity)
+                        .foregroundStyle(.timerfull)
+                        .frame(height: (screen.size.height * CGFloat(self.index)))
+                }//: ZSTACK ProgressBar
             }
-            .onReceive(self.time, perform: { time in
-                if !epicManager.gameTimer.isStop{
-                    if self.epicManager.gameTimer.gameTime != 0 {
-                        self.epicManager.gameTimer.gameTime -= 1
-                        self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
-                    } else {
-                        //ключ проигрыша человека
-                        print("человек проиграл")
-                        epicManager.addScoreComputer()
-                        print(epicManager.computer.score)
-                        epicManager.saveGame()
-                        epicManager.gameTimer.isStop.toggle()
-                        print(epicManager.gameTimer.isStop)
-                    }
-                } else if epicManager.gameTimer.isStop {
-                    return
+            .frame(width: 12)
+            Text("0:\(epicManager.gameTimer.gameTime.formatted())")
+                .font(.system(size: 12))
+                .foregroundStyle(.white)
+            
+            //                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
+            //                                    EmptyView()
+            //                                }
+        }
+        
+        .onReceive(self.time, perform: { time in
+            if !epicManager.gameTimer.isStop{
+                if self.epicManager.gameTimer.gameTime != 0 {
+                    self.epicManager.gameTimer.gameTime -= 1
+                    self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
+                } else {
+                    //ключ проигрыша человека
+                    print("человек проиграл")
+                    epicManager.addScoreComputer()
+                    print(epicManager.computer.score)
+                    epicManager.saveGame()
+                    //                        index = 1
+                    //                        epicManager.gameTimer.isStop.toggle()
+                    //                        print(epicManager.gameTimer.isStop)
                 }
-            })
-       
-    }
+            } else if epicManager.gameTimer.isStop {
+                ////                    epicManager.addScoreComputer()
+                ////                    epicManager.gameTimer.isStop.toggle()
+                return
+            }
+            
+        }
+        )}
 }
 
 #Preview {

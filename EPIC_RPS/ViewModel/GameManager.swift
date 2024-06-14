@@ -16,13 +16,15 @@ class GameManager: ObservableObject {
     @Published var computer: ComputerGame = ComputerGame(
         arr: ["rock","scissors","paper"],
         randomSelect: nil,
-        score: 0
+        score: 0,
+        win: false
     )
     
     @Published var people: PeopleGame = PeopleGame(
         arr: ["rock","scissors","paper"],
         select: nil,
-        score: 0
+        score: 0,
+        win: false
     )
     
     @Published var scoreLevels: SaveGameResult = SaveGameResult(
@@ -170,12 +172,16 @@ class GameManager: ObservableObject {
     
     func addScoreComputer(){
         computer.score += 1
-        
+        if computer.score == 3 {
+            computer.win = true
+        }
     }
     
     func addScorePeople(){
         people.score += 1
-        
+        if people.score == 3 {
+            people.win = true
+        }
     }
     
     
@@ -197,6 +203,9 @@ class GameManager: ObservableObject {
         ComputerSelectQuestion()
         people.score = 0
         people.select = nil
+        computer.win = false
+        people.win = false
+        gameTimer.isStop = false
         currentBottomHand = Image(.maleHand)
         currentTopHand = Image(.femaleHand)
     }
