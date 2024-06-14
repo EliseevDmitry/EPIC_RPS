@@ -44,13 +44,14 @@ struct TimerView: View {
                     epicManager.addScoreComputer()
                     print(epicManager.computer.score)
                     epicManager.saveGame()
-                    //                        index = 1
-                    //                        epicManager.gameTimer.isStop.toggle()
-                    //                        print(epicManager.gameTimer.isStop)
+                    index = 1
+                    self.epicManager.gameTimer.gameTime = 5
+                    print(epicManager.gameTimer.isStop)
+
+                            epicManager.gameTimer.isStop = false
+
                 }
             } else if epicManager.gameTimer.isStop {
-                ////                    epicManager.addScoreComputer()
-                ////                    epicManager.gameTimer.isStop.toggle()
                 return
             }
             
