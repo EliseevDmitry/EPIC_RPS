@@ -22,16 +22,22 @@ struct StartGameView: View {
 //                            .frame(height: 300)
 //                            .padding(.leading, 5)
                         Spacer()
-                        Text("Fight")
-                            .textCase(.uppercase)
-                            .font(.system(size: 60).bold())
-                            .foregroundStyle(.yellowGame)
-                        //                        Button{
-                        //                            epicManager.gameTimer.isStop.toggle()
-                        //                        }
-                        //                    label: {
-                        //                            Text("Stop")
-                        //                    }
+                        Text(epicManager.winLabel)
+                                   .textCase(.uppercase)
+                                   .font(.system(size: 60).bold())
+                                   .foregroundStyle(.yellowGame)
+                                   .scaleEffect(epicManager.isLabelAnimating ? 2 : 1.0)
+                                   .opacity(epicManager.isHidden ? 0 : 1)
+                                   .onAppear {
+                                       withAnimation(.easeInOut(duration: 1)) {
+                                           epicManager.isLabelAnimating = true
+                                       }
+                                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                           withAnimation(.easeInOut(duration: 3)) {
+                                               epicManager.isHidden = true
+                                           }
+                                       }
+                                   }
                         Spacer()
                         GameStatusView(barTotal: 6, barValueOne: Float(epicManager.computer.score), barValueTwo: Float(epicManager.people.score))
                             .frame(height: 400)
@@ -73,7 +79,7 @@ struct StartGameView: View {
                                 .scaledToFit()
                                 .frame(width: 155, height: 450)
                                 .padding(.top, handsAreStretched ? -190 : -350)
-                                .animation(.easeInOut(duration: 0.5), value: handsAreStretched)
+                                .animation(.easeInOut(duration: 0.9), value: handsAreStretched)
                             Spacer()
                             Spacer()
                         }
@@ -82,8 +88,16 @@ struct StartGameView: View {
                 
                 //когда выигрывает комп (epicManager.computer.win - true)
                 NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.computer.win) {
-                                    EmptyView()
+                    EmptyView()
+                        .onAppear {
+                            if epicManager.computer.win {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    epicManager.computer.win = true
                                 }
+                            }
+                        }
+                    
+                }
                 
                 //когда выигрывает человек (epicManager.people.win - - true)
                 NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.people.win) {

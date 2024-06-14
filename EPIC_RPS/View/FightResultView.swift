@@ -5,7 +5,9 @@ struct FightResultView: View {
     //MARK: - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
     @State private var showStartGameView = false
+    @State private var showSplashView = false
     @ObservedObject var epicManager: GameManager
+    
     
     var winOrLose = true
     let yourScore = GameManager().scoreLevels.peopleScore
@@ -13,7 +15,10 @@ struct FightResultView: View {
     
     //MARK: - BODY
     var body: some View {
-        NavigationLink(destination: StartGameView(epicManager: epicManager), isActive: $showStartGameView) {
+        NavigationLink(destination: FightLoadView(epicManager: epicManager), isActive: $showStartGameView) {
+                            EmptyView()
+                        }
+        NavigationLink(destination: StartGameView(epicManager: epicManager), isActive: $showSplashView) {
                             EmptyView()
                         }
         ZStack {
@@ -50,15 +55,15 @@ struct FightResultView: View {
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
-                        
-                        presentationMode.wrappedValue.dismiss()
+                        epicManager.gameTimer.isStop = false
+                        showSplashView = true
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
 //                        presentationMode.wrappedValue.dismiss()
-                        
+                        epicManager.gameTimer.isStop = false
                         showStartGameView = true
                     } label: {
                         Image(.restart)
@@ -69,12 +74,6 @@ struct FightResultView: View {
             .navigationBarBackButtonHidden()
         }//: ZStack
         .onAppear{
-//            if !epicManager.people.win {
-//                epicManager.people.win.toggle()
-//            }
-//            if !epicManager.computer.win {
-//                epicManager.computer.win.toggle()
-//            }
             epicManager.restartGame()
         }
         
