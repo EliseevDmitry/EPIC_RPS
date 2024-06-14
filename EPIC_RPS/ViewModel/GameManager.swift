@@ -8,6 +8,8 @@ class GameManager: ObservableObject {
     @Published var currentBottomHand = Image(.maleHand)
     @Published var showClash = false
     @Published var topPlayerWin = false
+    @Published var isAnimating = false
+    @Published var navigate = false
     //временно
     let playMelody = SoundManager.shared
     
@@ -221,6 +223,16 @@ class GameManager: ObservableObject {
             currentTopHand = top
         }
         
+    }
+    
+    func toggleAnimation() {
+        isAnimating.toggle()
+    }
+    
+    func nextScreen() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.navigate = true
+        }
     }
     
 }
