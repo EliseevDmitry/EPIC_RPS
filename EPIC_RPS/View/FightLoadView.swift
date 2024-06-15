@@ -94,6 +94,7 @@ struct FightLoadView: View {
                     Spacer()
                 }
                 .onAppear {
+                    epicManager.navigate = false
                     epicManager.toggleAnimation()
                     epicManager.nextScreen()
                 }

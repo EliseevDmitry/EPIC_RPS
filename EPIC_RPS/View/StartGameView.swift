@@ -28,9 +28,7 @@ struct StartGameView: View {
                                    .foregroundStyle(.yellowGame)
                                    .scaleEffect(epicManager.isLabelAnimating ? 2 : 1.0)
                                    .opacity(epicManager.isHidden ? 0 : 1)
-                                   .onAppear {
-                                   
-                                   }
+                                 
                         Spacer()
                         GameStatusView(barTotal: 6, barValueOne: Float(epicManager.computer.score), barValueTwo: Float(epicManager.people.score))
                             .frame(height: 400)
@@ -141,17 +139,20 @@ struct StartGameView: View {
                             .font(.title)
                             .foregroundColor(.black)
                     }
-                    
                 }
             }
         }
        
         .onAppear{
+            //epicManager.gameTimer.isStop = false
             epicManager.ComputerSelectQuestion()
+            
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
             
             withAnimation(.easeInOut(duration: 1)) {
-                epicManager.winLabel = "Fight"
+                if epicManager.winLabel.isEmpty {
+                    epicManager.winLabel = "Fight" }
+                
                 epicManager.isLabelAnimating = true
                 
             }
@@ -192,12 +193,11 @@ struct StartGameView: View {
                             .scaledToFit()
                             .frame(width: 155, height: 650)
                             .padding(.bottom, -350)
-                        
-                        
                     }
                 }
             }
         }
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
     }
