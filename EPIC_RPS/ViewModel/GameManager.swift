@@ -10,6 +10,10 @@ class GameManager: ObservableObject {
     @Published var topPlayerWin = false
     @Published var isAnimating = false
     @Published var navigate = false
+    @Published var winLabel = ""
+    @Published var isHidden = false
+    @Published var isLabelAnimating = false
+    
     //временно
     let playMelody = SoundManager.shared
     
@@ -45,8 +49,6 @@ class GameManager: ObservableObject {
         timeTrack: 30,
         indexTrack: 0
     )
-    
-    
     
     func playChangeTracks(at index: Int){
         playMelody.playSound(soundManager.tracks[index], timeInterval: soundManager.timeTrack)
@@ -97,47 +99,77 @@ class GameManager: ObservableObject {
     }
     
     func StartGame(data: ChoseData) {
-        // Отображаем выбор пользователя
-        print("сработала кнопка - \(data)")
-        
-        // Проверяем, что компьютер сделал выбор
-        if let computerChoice = computer.randomSelect {
-            if draw(data: data) {
-                // Отработка ничьей
-                withAnimation(.easeInOut(duration: 1)) {
-                    updateHands(for: data, computerChoice: computerChoice)
-                    showClash = false
-                }
-            } else {
-                // Проверяем, выиграл ли пользователь
-                if winOrLose(data: data) {
-                    addScorePeople()
-                    print("Выиграл человек")
-                    topPlayerWin = false // Пользователь внизу
-                } else {
-                    // Если нет, то выиграл компьютер
-                    addScoreComputer()
-                    print("Выиграл компьютер")
-                    topPlayerWin = true // Компьютер вверху
-                }
-                
-                // Обновляем руки и анимацию для выигрыша/проигрыша
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            // Отображаем выбор пользователя
+            print("сработала кнопка - \(data)")
+            
+            // Проверяем, что компьютер сделал выбор
+            if let computerChoice = computer.randomSelect {
+                if draw(data: data) {
+                    
                     withAnimation(.easeInOut(duration: 1)) {
-                        self.updateHands(for: data, computerChoice: computerChoice)
-                        self.showClash = true
-                        self.playMelody.playSound("Udar", timeInterval: 1)
+                        updateHands(for: data, computerChoice: computerChoice)
+                        showClash = false
+                        winLabel = "DRAW"
+                        isHidden = false
+                        isLabelAnimating = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                self.updateHands(top: Image(.femaleHand), bottom: Image(.maleHand))
+                            }
+                        }
                     }
-                }
-                
-                // Сброс анимации после задержки
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    withAnimation(.easeInOut(duration: 1)) {
-                        self.showClash = false
+                    
+                } else {
+                    // Проверяем, выиграл ли пользователь
+                    if winOrLose(data: data) {
+                        addScorePeople()
+                        print("Выиграл человек")
+                        topPlayerWin = false // Пользователь внизу
+                        withAnimation(.easeInOut(duration: 1)) {
+                            winLabel = "YOU WIN"
+                            isHidden = false
+                            isLabelAnimating = false
+                        }
+                        
+                    } else {
+                        // Если нет, то выиграл компьютер
+                        addScoreComputer()
+                        print("Выиграл компьютер")
+                        topPlayerWin = true // Компьютер вверху
+                        withAnimation(.easeInOut(duration: 1)) {
+                            winLabel = "YOU LOSE"
+                            isHidden = false
+                            isLabelAnimating = false
+                        }
+                    }
+                    
+                    // Обновляем руки и анимацию для выигрыша/проигрыша
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation(.easeInOut(duration: 0.5)) {
+                            self.updateHands(for: data, computerChoice: computerChoice)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                withAnimation(.easeInOut(duration: 0.7)) {
+                                    self.showClash = true
+                                    self.playMelody.playSound("Udar", timeInterval: 1)
+                                }
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    self.updateHands(top: Image(.femaleHand), bottom: Image(.maleHand))
+                                    self.winLabel = ""
+                                }
+                            }
+                        }
+                    }
+                    // Сброс анимации после задержки
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withAnimation(.easeInOut(duration: 1)) {
+                            self.showClash = false
+                        }
                     }
                 }
             }
-        }
+        
         // Компьютер снова выбирает значение для следующего раунда
         ComputerSelectQuestion()
         print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
