@@ -5,12 +5,14 @@ struct FightLoadView: View {
     @ObservedObject var epicManager: GameManager
     
     var body: some View {
+        let compScore = epicManager.scoreLevels.computerScore
+        let personScore = epicManager.scoreLevels.peopleScore
+        
         NavigationView {
             ZStack {
                 // Background gradient
                 RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350)
                     .ignoresSafeArea()
-                
                 // Content
                 VStack {
                     Spacer()
@@ -23,11 +25,20 @@ struct FightLoadView: View {
                             .rotationEffect(.degrees(epicManager.isAnimating ? 360 : 0))
                             .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                         
-                        Text("\(epicManager.scoreLevels.computerScore) Victories/\n \(epicManager.scoreLevels.peopleScore) Lose")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
+                        VStack {
+                                   
+                                   (Text("\(compScore) ")
+                                       .foregroundColor(.yellow) +
+                                   Text("Victories/\n")
+                                       .foregroundColor(.white) +
+                                   Text("\(compScore) ")
+                                       .foregroundColor(.red) +
+                                   Text("Lose")
+                                       .foregroundColor(.white))
+                                       .font(.title2)
+                                       .fontWeight(.bold)
+                                       .multilineTextAlignment(.center)
+                               }
                     }
                     
                     Spacer()
@@ -47,11 +58,20 @@ struct FightLoadView: View {
                             .rotationEffect(.degrees(epicManager.isAnimating ? 360 : 0))
                             .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                         
-                        Text("\(epicManager.scoreLevels.peopleScore) Victories/\n \(epicManager.scoreLevels.computerScore) Lose")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
+                        VStack {
+                                   
+                                   (Text("\(personScore) ")
+                                       .foregroundColor(.yellow) +
+                                   Text("Victories/\n")
+                                       .foregroundColor(.white) +
+                                   Text("\(compScore) ")
+                                       .foregroundColor(.red) +
+                                   Text("Lose")
+                                       .foregroundColor(.white))
+                                       .font(.title2)
+                                       .fontWeight(.bold)
+                                       .multilineTextAlignment(.center)
+                               }
                             .onAppear{
                                 epicManager.loadGame()
                             }
