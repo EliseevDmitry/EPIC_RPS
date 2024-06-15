@@ -3,17 +3,13 @@ import Foundation
 import SwiftUI
 
 class GameManager: ObservableObject {
-    
+    //New
     @Published var currentTopHand = Image(.femaleHand)
     @Published var currentBottomHand = Image(.maleHand)
     @Published var showClash = false
     @Published var topPlayerWin = false
     @Published var isAnimating = false
-    @Published var isLabelAnimating = false
     @Published var navigate = false
-    @Published var winLabel = "Fight"
-    @Published var isHidden = false
-    
     //временно
     let playMelody = SoundManager.shared
     
@@ -39,8 +35,8 @@ class GameManager: ObservableObject {
     
     @Published var gameTimer: GameTimer = GameTimer(
         isStop: false,
-        totalTime: 15,
-        gameTime: 15
+        totalTime: 5,
+        gameTime: 5
     )
     
     @Published var soundManager: Sounds = Sounds(
@@ -101,41 +97,36 @@ class GameManager: ObservableObject {
     }
     
     func StartGame(data: ChoseData) {
-            // Отображаем выбор пользователя
-            print("сработала кнопка - \(data)")
-            
-            // Проверяем, что компьютер сделал выбор
-            if let computerChoice = computer.randomSelect {
-                if draw(data: data) {
-                    
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        updateHands(for: data, computerChoice: computerChoice)
-                        showClash = false
-                        winLabel = "DRAW"
-                        isHidden = false
-                        isLabelAnimating = false
-                    }
+        // Отображаем выбор пользователя
+        print("сработала кнопка - \(data)")
+        
+        // Проверяем, что компьютер сделал выбор
+        if let computerChoice = computer.randomSelect {
+            if draw(data: data) {
+                // Отработка ничьей
+                withAnimation(.easeInOut(duration: 1)) {
+                    updateHands(for: data, computerChoice: computerChoice)
+                    showClash = false
+                }
+            } else {
+                // Проверяем, выиграл ли пользователь
+                if winOrLose(data: data) {
+                    addScorePeople()
+                    print("Выиграл человек")
+                    topPlayerWin = false // Пользователь внизу
                 } else {
-                    // Проверяем, выиграл ли пользователь
-                    if winOrLose(data: data) {
-                        addScorePeople()
-                        print("Выиграл человек")
-                        topPlayerWin = false // Пользователь внизу
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            winLabel = "YOU WIN"
-                            isHidden = false
-                            isLabelAnimating = false
-                        }
-                    } else {
-                        // Если нет, то выиграл компьютер
-                        addScoreComputer()
-                        print("Выиграл компьютер")
-                        topPlayerWin = true // Компьютер вверху
-                        withAnimation(.easeInOut(duration: 0.5)) {
-                            winLabel = "YOU LOSE"
-                            isHidden = false
-                            isLabelAnimating = false
-                        }
+                    // Если нет, то выиграл компьютер
+                    addScoreComputer()
+                    print("Выиграл компьютер")
+                    topPlayerWin = true // Компьютер вверху
+                }
+                
+                // Обновляем руки и анимацию для выигрыша/проигрыша
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        self.updateHands(for: data, computerChoice: computerChoice)
+                        self.showClash = true
+                        self.playMelody.playSound("Udar", timeInterval: 1)
                     }
                 }
                 
@@ -214,11 +205,12 @@ class GameManager: ObservableObject {
         ComputerSelectQuestion()
         people.score = 0
         people.select = nil
+        computer.win = false
+        people.win = false
         gameTimer.isStop = true //ОБЯЗАТЕЛЬНО ТУТ true
-        gameTimer.gameTime = 15
+        gameTimer.gameTime = 5
         currentBottomHand = Image(.maleHand)
         currentTopHand = Image(.femaleHand)
-        winLabel = "FIGHT"
     }
     
     
@@ -287,5 +279,6 @@ class GameManager: ObservableObject {
 //        )
 //        return manager
 //    }
+
 
 

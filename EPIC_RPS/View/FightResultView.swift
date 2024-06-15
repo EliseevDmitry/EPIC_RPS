@@ -51,14 +51,14 @@ struct FightResultView: View {
                     Button {
                         epicManager.gameTimer.isStop = false
                         showSplashView = true
-                        epicManager.resetScore()
+                        //epicManager.resetScore()
                         presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
-                        epicManager.resetScore()
+                        //epicManager.resetScore()
                         epicManager.gameTimer.isStop = false
                         showStartGameView = true
                         presentationMode.wrappedValue.dismiss()
