@@ -29,7 +29,7 @@ struct SelectedButton: View {
 struct GameButtons: View {
     var epicManager: GameManager
     //скрытая кнопка дополнительного задания
-    @State private var isHiddenButton = false
+    @State private var isHiddenButton = true
     @State private var isPressedPeople = true
     
     @State private var isPressedPaper = true

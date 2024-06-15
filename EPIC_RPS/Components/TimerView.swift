@@ -32,28 +32,36 @@ struct TimerView: View {
             //                                    EmptyView()
             //                                }
         }
-        
+        .onAppear{
+            epicManager.playMelody.playSound(epicManager.soundManager.tracks[epicManager.soundManager.melodyNumber], timeInterval: epicManager.soundManager.timeTrack)
+        }
         .onReceive(self.time, perform: { time in
+            print(time)
+            print("время игры - \(epicManager.gameTimer.gameTime)")
+            print("ключ - \(epicManager.gameTimer.isStop)")
             if !epicManager.gameTimer.isStop{
+                
                 if self.epicManager.gameTimer.gameTime != 0 {
                     self.epicManager.gameTimer.gameTime -= 1
                     self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
-                } else {
+                } else if epicManager.computer.score < 3 || epicManager.people.score < 3 {
                     //ключ проигрыша человека
                     print("человек проиграл")
-                    epicManager.addScoreComputer()
+                    if epicManager.addScoreComputer() {
+                        self.time.upstream.connect().cancel()
+                        epicManager.playMelody.stop()
+                       
+                    }
                     print(epicManager.computer.score)
-                    epicManager.saveGame()
+                    //epicManager.saveGame()
                     index = 1
                     self.epicManager.gameTimer.gameTime = 5
                     print(epicManager.gameTimer.isStop)
-
-                            epicManager.gameTimer.isStop = false
-
+                    print("бесконечный цикл")
+                    epicManager.gameTimer.isStop = false
                 }
-            } else if epicManager.gameTimer.isStop {
-                return
-            }
+                
+            }//
             
         }
         )}

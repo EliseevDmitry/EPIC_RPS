@@ -41,7 +41,9 @@ struct FightResultView: View {
                     .bold()
                     .foregroundStyle(epicManager.people.win ? Color(hex: 0xFFB24C) : .black)
                 
-                Text("\(epicManager.people.score) - \(epicManager.computer.score)")
+                Text("\(epicManager.scoreLevels.peopleScore) - \(epicManager.scoreLevels.computerScore)")
+                //Text("\(yourScore) - \(computerScore)")
+                //scoreLevels.computerScore
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.white)
@@ -49,17 +51,18 @@ struct FightResultView: View {
                     Button {
                         epicManager.gameTimer.isStop = false
                         showSplashView = true
-                        epicManager.resetScore()
-                        presentationMode.wrappedValue.dismiss()
+                        //epicManager.resetScore()
+                        //presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
-                        epicManager.resetScore()
+                        //epicManager.resetScore()
                         epicManager.gameTimer.isStop = false
                         showStartGameView = true
-                        presentationMode.wrappedValue.dismiss()
+                        showStartGameView = true
+                       // presentationMode.wrappedValue.dismiss() //!!! никаких dismiss()
                     } label: {
                         Image(.restart)
                     }
