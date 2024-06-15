@@ -53,6 +53,11 @@ struct SplashView: View {
             startPoint: .top,
             endPoint: .bottom
         ))
+        .onAppear{
+            epicManager.loadGame()
+            print("при запуске - \(epicManager.scoreLevels.computerScore)")
+            print("длина трека - \(epicManager.soundManager.timeTrack)")
+        }
     }
 
 }
