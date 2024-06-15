@@ -86,17 +86,20 @@ struct FightLoadView: View {
                         .scaleEffect(epicManager.isAnimating ? 1.3 : 1.0)
                         .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                     
-
+                    /* идет в паралельном потоке */
                     NavigationLink(destination: StartGameView(epicManager: epicManager).navigationBarBackButtonHidden(true), isActive: $epicManager.navigate) {
                         EmptyView()
                     }
+                    /* идет в паралельном потоке */
                     
                     Spacer()
                 }
                 .onAppear {
-                    epicManager.navigate = false
+                    /* идет в паралельном потоке */
+                    //epicManager.navigate = false
                     epicManager.toggleAnimation()
                     epicManager.nextScreen()
+                    /* идет в паралельном потоке */
                 }
             }
         }

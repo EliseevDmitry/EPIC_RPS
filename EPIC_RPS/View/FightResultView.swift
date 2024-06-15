@@ -50,19 +50,27 @@ struct FightResultView: View {
                 HStack(spacing: 40) {
                     Button {
                         epicManager.gameTimer.isStop = false
+                        
+                        /* идет в паралельном потоке
+                        //epicManager.navigate = false
+                       
+                         //пробовал делать toggle в асинхронном потоке и пробовал делать epicManager.navigate? - опционалом
+                         DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            epicManager.navigate = false
+                        }*/
+                        
                         showSplashView = true
-                        //epicManager.resetScore()
-                        //presentationMode.wrappedValue.dismiss()
+
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
-                        //epicManager.resetScore()
+
                         epicManager.gameTimer.isStop = false
+                        
                         showStartGameView = true
-                        showStartGameView = true
-                       // presentationMode.wrappedValue.dismiss() //!!! никаких dismiss()
+
                     } label: {
                         Image(.restart)
                     }
