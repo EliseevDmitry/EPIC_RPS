@@ -9,7 +9,7 @@ class GameManager: ObservableObject {
     @Published var showClash = false
     @Published var topPlayerWin = false
     @Published var isAnimating = false
-    @Published var navigate = false
+    @Published var navigate = false // не может быть опционал!!!
     @Published var winLabel = ""
     @Published var isHidden = false
     @Published var isLabelAnimating = false
@@ -285,13 +285,18 @@ class GameManager: ObservableObject {
         currentTopHand = top
     }
     
+    /* идет в паралельном потоке*/
     func toggleAnimation() {
         isAnimating.toggle()
     }
     
+    /* идет в паралельном потоке*/
+    //Проблема зацикливания в асинхронном потоке!!!
     func nextScreen() {
+        print(self.navigate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.navigate = true
+            [weak self] in
+            self?.navigate = true
         }
     }
     
