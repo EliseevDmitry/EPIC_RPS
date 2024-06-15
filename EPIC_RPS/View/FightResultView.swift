@@ -58,7 +58,7 @@ struct FightResultView: View {
                          DispatchQueue.main.asyncAfter(deadline: .now()) {
                             epicManager.navigate = false
                         }*/
-                        
+                        //epicManager.navigate = false
                         showSplashView = true
 
                     } label: {

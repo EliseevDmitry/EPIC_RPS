@@ -94,14 +94,15 @@ struct FightLoadView: View {
                     
                     Spacer()
                 }
-                .onAppear {
-                    /* идет в паралельном потоке */
-                    //epicManager.navigate = false
-                    epicManager.toggleAnimation()
-                    epicManager.nextScreen()
-                    /* идет в паралельном потоке */
-                }
+                //тут был .onAppear
             }
+        }//-nav
+        .onAppear {
+            /* идет в паралельном потоке */
+            //epicManager.navigate = false
+            epicManager.toggleAnimation()
+            epicManager.nextScreen()
+            /* идет в паралельном потоке */
         }
     }
 }

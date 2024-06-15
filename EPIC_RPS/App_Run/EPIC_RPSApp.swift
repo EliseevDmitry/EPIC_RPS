@@ -8,7 +8,6 @@ struct EPIC_RPSApp: App {
     var body: some Scene {
         WindowGroup {
             //MARK: - VIEWS run codebase separately
-            
             SplashView(epicManager: epicManager)
             //RulesView()
             //FightLoadView()
@@ -16,12 +15,10 @@ struct EPIC_RPSApp: App {
             //FightResultView()
             //SettingsView(epicManager: GameManager())
             // TestSaveGame(epicManager: GameManager())
-            
             //MARK: - COMPONENTS run codebase
             // GameStatusView(barTotal: 30, barValueOne: 1, barValueTwo: 2)
             //TimerView(epicManager: GameManager())
             //GameButtons(epicManager: GameManager())
-            
             //SplashView(epicManager: epicManager)
         }
     }
