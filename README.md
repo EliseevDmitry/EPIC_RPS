@@ -2,24 +2,19 @@
 
 **Описание проекта**
 
+
+
+
+
+
+
+
 "EPIC RPS" — это простая и популярная игра для двух игроков, которая часто используется для быстрого принятия решений или просто для развлечения. Цель игры — выиграть как можно больше раундов, демонстрируя правильные жесты против жестов соперника.
 
 
 
+<img width="443" alt="Screenshot 2024-06-16 at 02 23 28" src="https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/414af924-fda4-435c-a509-1471a1ab798a">
 
-
-      
-
-
-
-
-
-
-
-
-
-
-![IMG000](https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/b14abe80-0c70-4183-9492-5ac9a04907db)
 
 
 
@@ -120,6 +115,10 @@ _Слияние в основной репозиторий:_
 
 <img width="1727" alt="Screenshot 2024-06-16 at 02 19 11" src="https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/796f9498-d1a8-4d75-bbe6-7f4bf73c922c">
 
+<img width="1450" alt="Screenshot 2024-06-16 at 02 28 51" src="https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/0bdcef19-bcba-4120-a1ed-98bcea4ba6c4">
 
+<img width="1456" alt="Screenshot 2024-06-16 at 02 29 29" src="https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/69ddc8c1-6ccb-4df8-8dc1-ced1cf7669b2">
+
+<img width="797" alt="Screenshot 2024-06-16 at 02 29 44" src="https://github.com/EliseevDmitry/EPIC_RPS/assets/93874103/164efae6-5739-4165-b8a4-d9c22d61a5dd">
 
 
