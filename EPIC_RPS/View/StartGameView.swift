@@ -29,14 +29,7 @@ struct StartGameView: View {
                                    .scaleEffect(epicManager.isLabelAnimating ? 2 : 1.0)
                                    .opacity(epicManager.isHidden ? 0 : 1)
                                    .onAppear {
-                                       withAnimation(.easeInOut(duration: 1)) {
-                                           epicManager.isLabelAnimating = true
-                                       }
-                                       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                           withAnimation(.easeInOut(duration: 3)) {
-                                               epicManager.isHidden = true
-                                           }
-                                       }
+                                   
                                    }
                         Spacer()
                         GameStatusView(barTotal: 6, barValueOne: Float(epicManager.computer.score), barValueTwo: Float(epicManager.people.score))
@@ -157,6 +150,16 @@ struct StartGameView: View {
             epicManager.ComputerSelectQuestion()
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
             
+            withAnimation(.easeInOut(duration: 1)) {
+                epicManager.winLabel = "Fight"
+                epicManager.isLabelAnimating = true
+                
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.easeInOut(duration: 3)) {
+                    epicManager.isHidden = true
+                }
+            }
         }
         
         
