@@ -11,7 +11,7 @@ struct StartGameView: View {
     //MARK: - BODY
     var body: some View {
         
-        NavigationView {
+       // NavigationView {
             VStack {
                 ZStack{
                     Image(.fill1)
@@ -22,16 +22,13 @@ struct StartGameView: View {
                             .frame(height: 300)
                             .padding(.leading, 5)
                         Spacer()
-                        Text("Fight")
-                            .textCase(.uppercase)
-                            .font(.system(size: 60).bold())
-                            .foregroundStyle(.yellowGame)
-                        //                        Button{
-                        //                            epicManager.gameTimer.isStop.toggle()
-                        //                        }
-                        //                    label: {
-                        //                            Text("Stop")
-                        //                    }
+                        Text(epicManager.winLabel)
+                                   .textCase(.uppercase)
+                                   .font(.system(size: 60).bold())
+                                   .foregroundStyle(.yellowGame)
+                                   .scaleEffect(epicManager.isLabelAnimating ? 2 : 1.0)
+                                   .opacity(epicManager.isHidden ? 0 : 1)
+                                 
                         Spacer()
                         GameStatusView(barTotal: 6, barValueOne: Float(epicManager.computer.score), barValueTwo: Float(epicManager.people.score))
                             .frame(height: 400)
@@ -73,13 +70,39 @@ struct StartGameView: View {
                                 .scaledToFit()
                                 .frame(width: 155, height: 450)
                                 .padding(.top, handsAreStretched ? -190 : -350)
-                                .animation(.easeInOut(duration: 0.5), value: handsAreStretched)
+                                .animation(.easeInOut(duration: 0.9), value: handsAreStretched)
                             Spacer()
                             Spacer()
                         }
                     }
                 }//: OVERLAY
-            }
+                
+                //когда выигрывает комп (epicManager.computer.win - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.computer.win) {
+                    EmptyView()
+                        .onAppear {
+                            if epicManager.computer.win {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    epicManager.computer.win = true
+                                }
+                            }
+                        }
+                    
+                }
+                
+                //когда выигрывает человек (epicManager.people.win - - true)
+                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.people.win) {
+                    EmptyView()
+                }                      
+                .onAppear {
+                    if epicManager.computer.win {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            epicManager.computer.win = true
+                        }
+                    }
+                }
+
+            }//:
             
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
@@ -87,11 +110,9 @@ struct StartGameView: View {
                 GameButtons(epicManager: epicManager)
             }//: OVERLAY
             .ignoresSafeArea()
-            
-        
-        }     
+
+//        }//: NAVVIEW
         .navigationBarBackButtonHidden(true)
-        
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
@@ -110,22 +131,36 @@ struct StartGameView: View {
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity, alignment: .center)
                     Button(action: {
+                        epicManager.gameTimer.isStop.toggle()
                         print("ButtonPressed")
-                                                }) 
+                    })
                     {
-                                                    Image(systemName: "pause.circle")
-                                                        .font(.title)
-                                                        .foregroundColor(.black)
-                                                }
-                    
+                        Image(systemName: "pause.circle")
+                            .font(.title)
+                            .foregroundColor(.black)
+                    }
                 }
             }
         }
        
         .onAppear{
+            //epicManager.gameTimer.isStop = false
             epicManager.ComputerSelectQuestion()
+            
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
             
+            withAnimation(.easeInOut(duration: 1)) {
+                if epicManager.winLabel.isEmpty {
+                    epicManager.winLabel = "Fight" }
+                
+                epicManager.isLabelAnimating = true
+                
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation(.easeInOut(duration: 3)) {
+                    epicManager.isHidden = true
+                }
+            }
         }
         
         
@@ -140,28 +175,29 @@ struct StartGameView: View {
                             .scaledToFit()
                             .frame(width: 300, height: 300)
                             .padding(.bottom, -250)
-                        Image(.femaleHandScissors)
+                        epicManager.currentTopHand
                             .resizable()
                             .scaledToFit()
                             .frame(width: 155, height: 650)
                             .padding(.top, -350)
                         
                     } else {
+                        
                         Image(.blood)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 300)
                             .padding(.bottom, -250)
-                        Image(.maleHandRock)
+                        epicManager.currentBottomHand
                             .resizable()
                             .scaledToFit()
                             .frame(width: 155, height: 650)
                             .padding(.bottom, -350)
-                        
                     }
                 }
             }
         }
+        
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(RadialGradient(colors: [.gradientOne, .gradientTwo], center: .center, startRadius: .zero, endRadius: 350))
     }

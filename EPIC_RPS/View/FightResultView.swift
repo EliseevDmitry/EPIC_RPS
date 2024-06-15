@@ -4,16 +4,21 @@ import SwiftUI
 struct FightResultView: View {
     //MARK: - PROPERTIES
     @Environment(\.presentationMode) var presentationMode
-    
-    var winOrLose = true
-    let yourScore = 3
-    let computerScore = 1
+    @State private var showStartGameView = false
+    @State private var showSplashView = false
+    @ObservedObject var epicManager: GameManager
     
     //MARK: - BODY
     var body: some View {
+        
+        NavigationLink(destination: StartGameView(epicManager: epicManager)
+            .navigationBarBackButtonHidden(), isActive: $showStartGameView) { }
+        
+        NavigationLink(destination: SplashView(epicManager: epicManager), isActive: $showSplashView) { }
+        
         ZStack {
             RadialGradient(
-                gradient: Gradient(colors: winOrLose ?
+                gradient: Gradient(colors: epicManager.people.win ?
                                    [Color(hex: 0x2D2599), Color(hex: 0x656DF4)]
                                    : [Color(hex: 0xFFB600), Color(hex: 0xEE413C)]),
                 center: .center,
@@ -27,28 +32,45 @@ struct FightResultView: View {
                     Circle()
                         .fill(Color(hex: 0x2B2870))
                     .frame(width: 176, height: 176)
-                    Image(winOrLose ? .player2 : .player1)
+                    Image(epicManager.people.win ? .player2 : .player1)
                         .resizable()
                         .frame(width: 66.89, height: 77.9)
                 }
-                Text(winOrLose ? "You Win" : "You Lose")
+                Text(epicManager.people.win ? "You Win" : "You Lose")
                     .font(.title2)
                     .bold()
-                    .foregroundStyle(winOrLose ? Color(hex: 0xFFB24C) : .black)
+                    .foregroundStyle(epicManager.people.win ? Color(hex: 0xFFB24C) : .black)
                 
-                Text("\(yourScore) - \(computerScore)")
+                Text("\(epicManager.scoreLevels.peopleScore) - \(epicManager.scoreLevels.computerScore)")
+                //Text("\(yourScore) - \(computerScore)")
+                //scoreLevels.computerScore
                     .font(.largeTitle)
                     .bold()
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
-                        presentationMode.wrappedValue.dismiss()
+                        epicManager.gameTimer.isStop = false
+                        
+                        /* идет в паралельном потоке
+                        //epicManager.navigate = false
+                       
+                         //пробовал делать toggle в асинхронном потоке и пробовал делать epicManager.navigate? - опционалом
+                         DispatchQueue.main.asyncAfter(deadline: .now()) {
+                            epicManager.navigate = false
+                        }*/
+                        //epicManager.navigate = false
+                        showSplashView = true
+
                     } label: {
                         Image(.home)
                     }
                     
                     Button {
-                        print("restart")
+
+                        epicManager.gameTimer.isStop = false
+                        
+                        showStartGameView = true
+
                     } label: {
                         Image(.restart)
                     }
@@ -57,11 +79,14 @@ struct FightResultView: View {
             }
             .navigationBarBackButtonHidden()
         }
+        .onAppear{
+            epicManager.restartGame()
+        }
         
     }
 }
 
 //MARK: - PREVIEW
 #Preview {
-    FightResultView()
+    FightResultView( epicManager: GameManager())
 }

@@ -11,14 +11,16 @@ struct ComputerGame {
     let arr: [String]
     var randomSelect: Int?
     var score: Int
-}
+    var win: Bool
+    }
 
 struct PeopleGame {
     let arr: [String]
     var select: Int?
     var score: Int
+    var win: Bool
 }
-
+//
 struct SaveGameResult: Codable {
     var computerScore: Int
     var peopleScore: Int
@@ -31,7 +33,9 @@ struct GameTimer{
     var gameTime: Float
 }
 
-struct Sounds{
+struct Sounds: Codable{
     let tracks: [String]
-    let melodyNumber: Int
+    var melodyNumber: Int
+    var timeTrack: Int
+    var indexTrack: Int
 }

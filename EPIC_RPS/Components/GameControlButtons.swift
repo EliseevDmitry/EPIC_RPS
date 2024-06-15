@@ -1,5 +1,4 @@
 import SwiftUI
-// Правильно исп дженерик?
 
 struct GameControlButtons<Destination: View>: View {
     
@@ -8,7 +7,7 @@ struct GameControlButtons<Destination: View>: View {
     
     var body: some View {
         
-        NavigationLink(destination: destination) {
+        NavigationLink(destination: destination.navigationBarBackButtonHidden(true)) {
             ZStack {
                 Image(.controllButtonBG)
                     .resizable()
@@ -17,7 +16,6 @@ struct GameControlButtons<Destination: View>: View {
                     .fontWeight(.heavy)
                     .font(.system(size: 16))
                     .foregroundStyle(Color("FontColor"))
-                
             }
         }
     }

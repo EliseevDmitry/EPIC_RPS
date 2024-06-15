@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TimerView: View {
-    var epicManager: GameManager
+    @ObservedObject var epicManager: GameManager
     @State private var time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var index: CGFloat = 1.0
+    
     var body: some View {
         VStack{
             GeometryReader { screen in
@@ -26,19 +27,44 @@ struct TimerView: View {
             Text("0:\(epicManager.gameTimer.gameTime.formatted())")
                 .font(.system(size: 12))
                 .foregroundStyle(.white)
+            
+            //                NavigationLink(destination: FightResultView(epicManager: epicManager), isActive: $epicManager.gameTimer.isStop) {
+            //                                    EmptyView()
+            //                                }
+        }
+        .onAppear{
+            epicManager.playMelody.playSound(epicManager.soundManager.tracks[epicManager.soundManager.melodyNumber], timeInterval: epicManager.soundManager.timeTrack)
         }
         .onReceive(self.time, perform: { time in
+            print(time)
+            print("время игры - \(epicManager.gameTimer.gameTime)")
+            print("ключ - \(epicManager.gameTimer.isStop)")
             if !epicManager.gameTimer.isStop{
+                
                 if self.epicManager.gameTimer.gameTime != 0 {
                     self.epicManager.gameTimer.gameTime -= 1
                     self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
+                } else if epicManager.computer.score < 3 || epicManager.people.score < 3 {
+                    //ключ проигрыша человека
+                    print("человек проиграл")
+                    if epicManager.addScoreComputer() {
+                        self.time.upstream.connect().cancel()
+                        epicManager.playMelody.stop()
+                       
+                    }
+                    print(epicManager.computer.score)
+                    //epicManager.saveGame()
+                    index = 1
+                    self.epicManager.gameTimer.gameTime = 5
+                    print(epicManager.gameTimer.isStop)
+                    print("бесконечный цикл")
+                    epicManager.gameTimer.isStop = false
                 }
-            } else if epicManager.gameTimer.isStop {
-                return
-            }
-        })
-        
-    }
+                
+            }//
+            
+        }
+        )}
 }
 
 #Preview {

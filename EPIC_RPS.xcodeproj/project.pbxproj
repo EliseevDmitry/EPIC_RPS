@@ -105,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				262FEF122C15EB09008F8CF8 /* Preview Assets.xcassets */,
+				92E875542C1B23EB0043023F /* Udar.mp3 */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
