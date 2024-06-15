@@ -42,7 +42,7 @@ class GameManager: ObservableObject {
     @Published var soundManager: Sounds = Sounds(
         tracks: ["Мелодия 1", "Мелодия 2", "Мелодия 3"],
         melodyNumber: 0,
-        timeTrack: 2,
+        timeTrack: 30,
         indexTrack: 0
     )
     
@@ -56,9 +56,9 @@ class GameManager: ObservableObject {
     //для тестирования - 1 и 3 секунды
     func timeChangeTracks(at index: Int){
         switch index {
-        case 0: soundManager.timeTrack = 1
+        case 0: soundManager.timeTrack = 30
             soundManager.indexTrack = index
-        case 1: soundManager.timeTrack = 5
+        case 1: soundManager.timeTrack = 60
             soundManager.indexTrack = index
         default:
             return
@@ -68,7 +68,7 @@ class GameManager: ObservableObject {
     //сохранение игры
     func saveGame(){
         let encoder = JSONEncoder()
-
+        
         if let data = try? encoder.encode(scoreLevels) {
             UserDefaults.standard.set(data, forKey: "resultGame")
         }
@@ -89,6 +89,7 @@ class GameManager: ObservableObject {
         guard let loadSoundData = try? decoder.decode(Sounds.self, from: sondData) else {return}
         soundManager.indexTrack = loadSoundData.indexTrack
         soundManager.melodyNumber = loadSoundData.melodyNumber
+        soundManager.timeTrack = loadSoundData.timeTrack
     }
     
     func ComputerSelectQuestion(){
@@ -96,51 +97,51 @@ class GameManager: ObservableObject {
     }
     
     func StartGame(data: ChoseData) {
-            // Отображаем выбор пользователя
-            print("сработала кнопка - \(data)")
-            
-            // Проверяем, что компьютер сделал выбор
-            if let computerChoice = computer.randomSelect {
-                if draw(data: data) {
-                    // Отработка ничьей
-                    withAnimation(.easeInOut(duration: 1)) {
-                        updateHands(for: data, computerChoice: computerChoice)
-                        showClash = false
-                    }
+        // Отображаем выбор пользователя
+        print("сработала кнопка - \(data)")
+        
+        // Проверяем, что компьютер сделал выбор
+        if let computerChoice = computer.randomSelect {
+            if draw(data: data) {
+                // Отработка ничьей
+                withAnimation(.easeInOut(duration: 1)) {
+                    updateHands(for: data, computerChoice: computerChoice)
+                    showClash = false
+                }
+            } else {
+                // Проверяем, выиграл ли пользователь
+                if winOrLose(data: data) {
+                    addScorePeople()
+                    print("Выиграл человек")
+                    topPlayerWin = false // Пользователь внизу
                 } else {
-                    // Проверяем, выиграл ли пользователь
-                    if winOrLose(data: data) {
-                        addScorePeople()
-                        print("Выиграл человек")
-                        topPlayerWin = false // Пользователь внизу
-                    } else {
-                        // Если нет, то выиграл компьютер
-                        addScoreComputer()
-                        print("Выиграл компьютер")
-                        topPlayerWin = true // Компьютер вверху
+                    // Если нет, то выиграл компьютер
+                    addScoreComputer()
+                    print("Выиграл компьютер")
+                    topPlayerWin = true // Компьютер вверху
+                }
+                
+                // Обновляем руки и анимацию для выигрыша/проигрыша
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        self.updateHands(for: data, computerChoice: computerChoice)
+                        self.showClash = true
+                        self.playMelody.playSound("Udar", timeInterval: 1)
                     }
-                    
-                    // Обновляем руки и анимацию для выигрыша/проигрыша
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        withAnimation(.easeInOut(duration: 1)) {
-                            self.updateHands(for: data, computerChoice: computerChoice)
-                            self.showClash = true
-                            self.playMelody.playSound("Udar", timeInterval: 1)
-                        }
-                    }
-                    
-                    // Сброс анимации после задержки
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        withAnimation(.easeInOut(duration: 1)) {
-                            self.showClash = false
-                        }
+                }
+                
+                // Сброс анимации после задержки
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        self.showClash = false
                     }
                 }
             }
-            // Компьютер снова выбирает значение для следующего раунда
-            ComputerSelectQuestion()
-            print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
         }
+        // Компьютер снова выбирает значение для следующего раунда
+        ComputerSelectQuestion()
+        print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
+    }
     
     func draw(data: ChoseData)->Bool{
         if let index = computer.randomSelect {
@@ -170,28 +171,29 @@ class GameManager: ObservableObject {
         return false
     }
     
-    func addScoreComputer(){
+    func addScoreComputer()->Bool{
         computer.score += 1
         if computer.score == 3 {
+            gameTimer.isStop = true
+            scoreLevels.computerScore += 1
+            saveGame()
             computer.win = true
+            playMelody.stop()
+            print("увеличели - \(scoreLevels.computerScore)")
+            return true
         }
+        return false
     }
     
-    func addScorePeople(){
+    func addScorePeople()->Bool{
         people.score += 1
         if people.score == 3 {
-            people.win = true
-        }
-    }
-    
-    
-    
-    func chooseWin() -> Bool{
-        if computer.score == 3 {
-            scoreLevels.computerScore += 1
-            return true
-        } else if people.score == 3 {
+            gameTimer.isStop = true
             scoreLevels.peopleScore += 1
+            saveGame()
+            people.win = true
+            playMelody.stop()
+            print("увеличели - \(scoreLevels.peopleScore)")
             return true
         }
         return false
@@ -211,7 +213,7 @@ class GameManager: ObservableObject {
         currentTopHand = Image(.femaleHand)
     }
     
-   
+    
     
     func updateHands(for data: ChoseData, computerChoice: Int) {
         switch data {
@@ -244,12 +246,12 @@ class GameManager: ObservableObject {
             }
         }
     }
-        
-        func updateHands( top: Image, bottom: Image) {
-            currentBottomHand = bottom
-            currentTopHand = top
-        }
-        
+    
+    func updateHands( top: Image, bottom: Image) {
+        currentBottomHand = bottom
+        currentTopHand = top
+    }
+    
     
     
     func toggleAnimation() {
@@ -264,7 +266,7 @@ class GameManager: ObservableObject {
     
     
 }
-    
+
 //    static func testState()->GameManager {
 //        let manager = GameManager()
 //        manager.computer = ComputerGame(
@@ -277,5 +279,5 @@ class GameManager: ObservableObject {
 //        )
 //        return manager
 //    }
-    
+
 

@@ -14,6 +14,7 @@ struct SettingsView: View {
     let playMelody = SoundManager.shared
     
     var backButton : some View { Button(action: {
+        playMelody.stop()
         self.presentationMode.wrappedValue.dismiss()
     }) {
         Image(systemName: "chevron.backward")

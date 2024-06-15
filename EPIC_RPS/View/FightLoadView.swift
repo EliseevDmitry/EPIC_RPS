@@ -23,7 +23,7 @@ struct FightLoadView: View {
                             .rotationEffect(.degrees(epicManager.isAnimating ? 360 : 0))
                             .animation(.easeInOut(duration: 3), value: epicManager.isAnimating)
                         
-                        Text("\(epicManager.scoreLevels.computerScore) Victories/\n \(epicManager.scoreLevels.computerScore) Lose")
+                        Text("\(epicManager.scoreLevels.computerScore) Victories/\n \(epicManager.scoreLevels.peopleScore) Lose")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)

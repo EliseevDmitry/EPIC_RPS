@@ -42,7 +42,7 @@ struct FightResultView: View {
                     .bold()
                     .foregroundStyle(winOrLose ? Color(hex: 0xFFB24C) : .black)
                 
-                Text("\(yourScore) - \(epicManager.computer.score)")
+                Text("\(epicManager.scoreLevels.peopleScore) - \(epicManager.scoreLevels.computerScore)")
                 //Text("\(yourScore) - \(computerScore)")
                 //scoreLevels.computerScore
                     .font(.largeTitle)

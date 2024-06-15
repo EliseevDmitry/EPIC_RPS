@@ -132,7 +132,9 @@ struct StartGameView: View {
         }
        
         .onAppear{
+            //epicManager.gameTimer.isStop = false
             epicManager.ComputerSelectQuestion()
+            
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
             
         }
