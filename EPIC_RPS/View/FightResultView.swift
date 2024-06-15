@@ -52,7 +52,7 @@ struct FightResultView: View {
                         epicManager.gameTimer.isStop = false
                         showSplashView = true
                         //epicManager.resetScore()
-                        presentationMode.wrappedValue.dismiss()
+                        //presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(.home)
                     }
@@ -61,7 +61,8 @@ struct FightResultView: View {
                         //epicManager.resetScore()
                         epicManager.gameTimer.isStop = false
                         showStartGameView = true
-                        presentationMode.wrappedValue.dismiss()
+                        showStartGameView = true
+                       // presentationMode.wrappedValue.dismiss() //!!! никаких dismiss()
                     } label: {
                         Image(.restart)
                     }
