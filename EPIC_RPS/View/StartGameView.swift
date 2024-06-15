@@ -130,6 +130,7 @@ struct StartGameView: View {
                         .font(.system(size: 25))
                         .fontWeight(.medium)
                         .frame(maxWidth: .infinity, alignment: .center)
+                        .offset(x: 15)
                     Button(action: {
                         epicManager.gameTimer.isStop.toggle()
                         print("ButtonPressed")
