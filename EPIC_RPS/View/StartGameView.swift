@@ -139,7 +139,6 @@ struct StartGameView: View {
                             .font(.title)
                             .foregroundColor(.black)
                     }
-                    
                 }
             }
         }
@@ -151,7 +150,9 @@ struct StartGameView: View {
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")
             
             withAnimation(.easeInOut(duration: 1)) {
-                epicManager.winLabel = "Fight"
+                if epicManager.winLabel.isEmpty {
+                    epicManager.winLabel = "Fight" }
+                
                 epicManager.isLabelAnimating = true
                 
             }

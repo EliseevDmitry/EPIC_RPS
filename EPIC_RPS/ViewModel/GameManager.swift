@@ -233,6 +233,7 @@ class GameManager: ObservableObject {
     
     //перезапуск игры
     func restartGame(){
+        winLabel = ""
         computer.score = 0
         ComputerSelectQuestion()
         people.score = 0
@@ -283,8 +284,6 @@ class GameManager: ObservableObject {
         currentBottomHand = bottom
         currentTopHand = top
     }
-    
-    
     
     func toggleAnimation() {
         isAnimating.toggle()
