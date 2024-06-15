@@ -20,7 +20,7 @@ struct PeopleGame {
     var score: Int
     var win: Bool
 }
-
+//
 struct SaveGameResult: Codable {
     var computerScore: Int
     var peopleScore: Int
