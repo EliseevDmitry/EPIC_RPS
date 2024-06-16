@@ -12,7 +12,6 @@ class GameManager: ObservableObject {
     @Published var winLabel = ""
     @Published var isHidden = false
     @Published var isLabelAnimating = false
-    @Published var isWin = false
     @Published var timeProgress = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     //временно
@@ -213,7 +212,7 @@ class GameManager: ObservableObject {
             scoreLevels.computerScore += 1
             saveGame()
             computer.win = true
-            isWin = true
+        
             playMelody.stop()
             print("увеличели - \(scoreLevels.computerScore)")
             return true
@@ -229,7 +228,6 @@ class GameManager: ObservableObject {
             scoreLevels.peopleScore += 1
             saveGame()
             people.win = true
-            isWin = true
             playMelody.stop()
             print("увеличели - \(scoreLevels.peopleScore)")
             return true
@@ -246,7 +244,6 @@ class GameManager: ObservableObject {
         people.select = nil
         computer.win = false
         people.win = false
-        isWin = true
         gameTimer.isStop = true //ОБЯЗАТЕЛЬНО ТУТ true
         gameTimer.gameTime = 30 //сделать динамику
         currentBottomHand = Image(.maleHand)

@@ -35,24 +35,18 @@ struct TimerView: View {
                         self.epicManager.gameTimer.gameTime -= 1
                         self.index = CGFloat((self.epicManager.gameTimer.gameTime/self.epicManager.gameTimer.totalTime))
                     } else if epicManager.computer.score < 3 || epicManager.people.score < 3 {
-                        //ключ проигрыша человека
                         print("человек проиграл")
                         if epicManager.addScoreComputer() {
                             epicManager.timeProgress.upstream.connect().cancel()
+                            //epicManager.gameTimer.isStop = true
                         }
-                        print(epicManager.computer.score)
-                        //epicManager.saveGame()
                         index = 1
-                        self.epicManager.gameTimer.gameTime = 15
-                        print(epicManager.gameTimer.isStop)
+                        self.epicManager.gameTimer.gameTime = 30
                         epicManager.gameTimer.isStop = false
                     }
                 }
                 
             }
-            
-            
-//        }
         )}
 }
 

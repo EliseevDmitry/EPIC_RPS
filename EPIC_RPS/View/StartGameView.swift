@@ -118,7 +118,7 @@ struct StartGameView: View {
             }
         }
         .onAppear{
-            playSound("Мелодия 1", timeInterval: 30)
+            playSound(epicManager.soundManager.tracks[epicManager.soundManager.melodyNumber], timeInterval: 30)
             epicManager.gameTimer.isStop = false
             epicManager.ComputerSelectQuestion()
             print("Компьютер загадал - \(epicManager.computer.arr[epicManager.computer.randomSelect!])")

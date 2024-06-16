@@ -43,13 +43,11 @@ struct FightResultView: View {
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
-                        epicManager.gameTimer.gameTime = 30
                         showSplashView = true
                     } label: {
                         Image(.home)
                     }
                     Button {
-                        epicManager.gameTimer.gameTime = 30
                         showStartGameView = true
                     } label: {
                         Image(.restart)
@@ -58,11 +56,12 @@ struct FightResultView: View {
                 .padding()
             }
             .navigationBarBackButtonHidden()
+            .onAppear{
+                print("при переходе с игры - \(epicManager.people.win)")
+                stopMuzic()
+                epicManager.restartGame()
+                
         }
-        .onAppear{
-            print("при переходе с игры - \(epicManager.people.win)")
-            stopMuzic()
-            epicManager.restartGame()
         }
     }
 }
