@@ -3,8 +3,7 @@ import SwiftUI
 struct SelectedButton: View {
     var epicManager: GameManager
     @State var isPressed: Bool = false
-    
-    
+
     let image: ImageResource
     let data: ChoseData
     
@@ -16,7 +15,6 @@ struct SelectedButton: View {
                 .frame(width: 80, height: 80)
             Button {
                 isPressed.toggle()
-//                print("Btn click \(image)")
                 epicManager.StartGame(data: data)
                 isPressed.toggle()
             } label: {
@@ -31,11 +29,9 @@ struct GameButtons: View {
     //скрытая кнопка дополнительного задания
     @State private var isHiddenButton = true
     @State private var isPressedPeople = true
-    
     @State private var isPressedPaper = true
     @State private var isPressedStone = true
     @State private var isPressedScissors = true
-    
     @State private var currentTopHand = Image(.femaleHand)
     @State private var currentBottomHand = Image(.maleHand)
     
@@ -70,19 +66,3 @@ struct GameButtons: View {
 #Preview{
     GameButtons(epicManager: GameManager())
 }
-
-//Button("AnimationTest") {
-//    withAnimation(.easeInOut(duration: 1)) {
-//        handsAreStretched.toggle()
-//    }
-//    
-//    // Пример логики изменения рук в зависимости от состояния игры
-//    currentTopHand = Image(.femaleHandScissors) // или другой нужный образ
-//    currentBottomHand = Image(.maleHandRock) // или другой нужный образ
-//    
-//    Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-//        withAnimation(.easeInOut(duration: 1)) {
-//            showClash.toggle()
-//        }
-//    }
-//}

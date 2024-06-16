@@ -1,4 +1,3 @@
-
 import Foundation
 import SwiftUI
 
@@ -13,10 +12,12 @@ class GameManager: ObservableObject {
     @Published var winLabel = ""
     @Published var isHidden = false
     @Published var isLabelAnimating = false
+    @Published var isWin = false
+    @Published var timeProgress = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     //временно
     let playMelody = SoundManager.shared
-    
+    //let playbackgroundbackgroundMelody = SoundManager.shared
     @Published var computer: ComputerGame = ComputerGame(
         arr: ["rock","scissors","paper"],
         randomSelect: nil,
@@ -39,8 +40,8 @@ class GameManager: ObservableObject {
     
     @Published var gameTimer: GameTimer = GameTimer(
         isStop: false,
-        totalTime: 5,
-        gameTime: 5
+        totalTime: 30,
+        gameTime: 30
     )
     
     @Published var soundManager: Sounds = Sounds(
@@ -70,7 +71,6 @@ class GameManager: ObservableObject {
     //сохранение игры
     func saveGame(){
         let encoder = JSONEncoder()
-        
         if let data = try? encoder.encode(scoreLevels) {
             UserDefaults.standard.set(data, forKey: "resultGame")
         }
@@ -101,11 +101,10 @@ class GameManager: ObservableObject {
     func StartGame(data: ChoseData) {
             // Отображаем выбор пользователя
             print("сработала кнопка - \(data)")
-            
+            gameTimer.isStop = true //NEW
             // Проверяем, что компьютер сделал выбор
             if let computerChoice = computer.randomSelect {
                 if draw(data: data) {
-                    
                     withAnimation(.easeInOut(duration: 1)) {
                         updateHands(for: data, computerChoice: computerChoice)
                         showClash = false
@@ -115,6 +114,7 @@ class GameManager: ObservableObject {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             withAnimation(.easeInOut(duration: 0.5)) {
                                 self.updateHands(top: Image(.femaleHand), bottom: Image(.maleHand))
+                                //self.gameTimer.isStop = false //NEW
                             }
                         }
                     }
@@ -147,16 +147,19 @@ class GameManager: ObservableObject {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         withAnimation(.easeInOut(duration: 0.5)) {
                             self.updateHands(for: data, computerChoice: computerChoice)
+                            //self.gameTimer = false //NEW
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                 withAnimation(.easeInOut(duration: 0.7)) {
                                     self.showClash = true
                                     self.playMelody.playSound("Udar", timeInterval: 1)
+                                    
                                 }
                             }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     self.updateHands(top: Image(.femaleHand), bottom: Image(.maleHand))
                                     self.winLabel = ""
+                                    
                                 }
                             }
                         }
@@ -169,7 +172,6 @@ class GameManager: ObservableObject {
                     }
                 }
             }
-        
         // Компьютер снова выбирает значение для следующего раунда
         ComputerSelectQuestion()
         print("Компьютер загадал - \(computer.arr[computer.randomSelect!])")
@@ -206,10 +208,12 @@ class GameManager: ObservableObject {
     func addScoreComputer()->Bool{
         computer.score += 1
         if computer.score == 3 {
+            timeProgress.upstream.connect().cancel()
             gameTimer.isStop = true
             scoreLevels.computerScore += 1
             saveGame()
             computer.win = true
+            isWin = true
             playMelody.stop()
             print("увеличели - \(scoreLevels.computerScore)")
             return true
@@ -220,10 +224,12 @@ class GameManager: ObservableObject {
     func addScorePeople()->Bool{
         people.score += 1
         if people.score == 3 {
+            timeProgress.upstream.connect().cancel()
             gameTimer.isStop = true
             scoreLevels.peopleScore += 1
             saveGame()
             people.win = true
+            isWin = true
             playMelody.stop()
             print("увеличели - \(scoreLevels.peopleScore)")
             return true
@@ -240,13 +246,12 @@ class GameManager: ObservableObject {
         people.select = nil
         computer.win = false
         people.win = false
+        isWin = true
         gameTimer.isStop = true //ОБЯЗАТЕЛЬНО ТУТ true
-        gameTimer.gameTime = 5
+        gameTimer.gameTime = 30 //сделать динамику
         currentBottomHand = Image(.maleHand)
         currentTopHand = Image(.femaleHand)
     }
-    
-    
     
     func updateHands(for data: ChoseData, computerChoice: Int) {
         switch data {
@@ -283,6 +288,8 @@ class GameManager: ObservableObject {
     func updateHands( top: Image, bottom: Image) {
         currentBottomHand = bottom
         currentTopHand = top
+        gameTimer.gameTime = 30 //NEW
+        gameTimer.isStop = false //NEW
     }
     
     /* идет в паралельном потоке*/
@@ -291,7 +298,6 @@ class GameManager: ObservableObject {
     }
     
     /* идет в паралельном потоке*/
-    //Проблема зацикливания в асинхронном потоке!!!
     func nextScreen() {
         print(self.navigate)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -299,22 +305,8 @@ class GameManager: ObservableObject {
             self?.navigate = true
         }
     }
-    
-    
 }
 
-//    static func testState()->GameManager {
-//        let manager = GameManager()
-//        manager.computer = ComputerGame(
-//            arr: ["rock","scissors","paper"],
-//            randomSelect: nil
-//            )
-//        manager.people = PeopleGame(
-//            arr: ["rock","scissors","paper"],
-//            Select: nil
-//        )
-//        return manager
-//    }
 
 
 

@@ -7,20 +7,17 @@ struct RulesView: View {
             RuleItem(number: 1, text: Text("Игра проводится между игроком и компьютером."))
             RuleItem(number: 2, text: Text("Жесты:"))
                 .padding(.top)
-            
             VStack(alignment: .leading, spacing: 8) {
                 GestureItem(text: "Кулак > Ножницы", image2: "paper_habib")
                 GestureItem(text: "Бумага > Кулак", image2: "scissor_habib")
                 GestureItem(text: "Ножницы > Бумага", image2: "stone_habib")
             }
             .padding(.leading, 32)
-            
             RuleItem(number: 3, text: Text("У игрока есть 30 сек. для выбора жеста."))
             RuleItem(number: 4, text: Text("Игра ведётся до трёх побед одного из участников."))
             RuleItem(number: 5, text: Text("За каждую победу игрок получает ")
                 + Text("500 баллов").foregroundColor(.purple)
                 + Text(", которые можно посмотреть на доске лидеров."))
-            
             Spacer()
         }
         .padding()
@@ -44,7 +41,6 @@ struct RulesView: View {
                     Button(action: {
                         print("ButtonPressed")
                     }) {
-                    //    Image("")
                     }
                 }
             }

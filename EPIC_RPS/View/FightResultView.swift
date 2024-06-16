@@ -1,4 +1,3 @@
-
 import SwiftUI
 
 struct FightResultView: View {
@@ -10,12 +9,9 @@ struct FightResultView: View {
     
     //MARK: - BODY
     var body: some View {
-        
         NavigationLink(destination: StartGameView(epicManager: epicManager)
             .navigationBarBackButtonHidden(), isActive: $showStartGameView) { }
-        
         NavigationLink(destination: SplashView(epicManager: epicManager), isActive: $showSplashView) { }
-        
         ZStack {
             RadialGradient(
                 gradient: Gradient(colors: epicManager.people.win ?
@@ -26,7 +22,6 @@ struct FightResultView: View {
                 endRadius: 300
             )
             .ignoresSafeArea()
-            
             VStack {
                 ZStack {
                     Circle()
@@ -40,7 +35,6 @@ struct FightResultView: View {
                     .font(.title2)
                     .bold()
                     .foregroundStyle(epicManager.people.win ? Color(hex: 0xFFB24C) : .black)
-                
                 Text("\(epicManager.scoreLevels.peopleScore) - \(epicManager.scoreLevels.computerScore)")
                 //Text("\(yourScore) - \(computerScore)")
                 //scoreLevels.computerScore
@@ -49,28 +43,14 @@ struct FightResultView: View {
                     .foregroundStyle(.white)
                 HStack(spacing: 40) {
                     Button {
-                        epicManager.gameTimer.isStop = false
-                        
-                        /* идет в паралельном потоке
-                        //epicManager.navigate = false
-                       
-                         //пробовал делать toggle в асинхронном потоке и пробовал делать epicManager.navigate? - опционалом
-                         DispatchQueue.main.asyncAfter(deadline: .now()) {
-                            epicManager.navigate = false
-                        }*/
-                        //epicManager.navigate = false
+                        epicManager.gameTimer.gameTime = 30
                         showSplashView = true
-
                     } label: {
                         Image(.home)
                     }
-                    
                     Button {
-
-                        epicManager.gameTimer.isStop = false
-                        
+                        epicManager.gameTimer.gameTime = 30
                         showStartGameView = true
-
                     } label: {
                         Image(.restart)
                     }
@@ -80,11 +60,13 @@ struct FightResultView: View {
             .navigationBarBackButtonHidden()
         }
         .onAppear{
+            print("при переходе с игры - \(epicManager.people.win)")
+            stopMuzic()
             epicManager.restartGame()
         }
-        
     }
 }
+
 
 //MARK: - PREVIEW
 #Preview {

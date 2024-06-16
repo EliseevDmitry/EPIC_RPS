@@ -1,15 +1,14 @@
-
 import SwiftUI
+
 
 struct SplashView: View {
 
     @ObservedObject var epicManager: GameManager
     //MARK: - BODY
-///
+
     var body: some View {
         NavigationView {
             VStack {
-                
                 HStack {
                     NavigationLink(destination: SettingsView(epicManager: epicManager)){
                         Image(systemName: "gearshape.fill")
@@ -17,10 +16,8 @@ struct SplashView: View {
                             .frame(width: 35, height: 35)
                             .foregroundStyle(.black)
                     }
-                    .padding(.leading, 20)  
-                    
+                    .padding(.leading, 20)
                     Spacer()
-                    
                     NavigationLink(destination: RulesView()){
                         Image(systemName: "questionmark.circle.fill")
                             .resizable()
@@ -30,15 +27,11 @@ struct SplashView: View {
                     .padding(.trailing, 20)
                 }
                 .padding(.top, 15)
-                
                 Spacer()
-                
                 Image(.epicRPSLogo)
                     .resizable()
                     .scaledToFit()
-                
                 Spacer().frame(height: 100)
-                
                 VStack(spacing: 15) {
                     GameControlButtons(buttonText: "Start game", destination: FightLoadView(epicManager: epicManager))
                     GameControlButtons(buttonText: "Results",destination: FightResultView(epicManager: epicManager))
@@ -54,14 +47,16 @@ struct SplashView: View {
             endPoint: .bottom
         ))
         .onAppear{
+//            epicManager.scoreLevels.computerScore = 0
+//            epicManager.scoreLevels.peopleScore = 0
+//            epicManager.saveGame()
+            
             epicManager.loadGame()
             print("при запуске - \(epicManager.scoreLevels.computerScore)")
             print("длина трека - \(epicManager.soundManager.timeTrack)")
         }
     }
-
 }
-
 
 #Preview {
     SplashView(epicManager: GameManager())
