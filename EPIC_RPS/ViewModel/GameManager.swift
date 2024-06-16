@@ -121,8 +121,9 @@ class GameManager: ObservableObject {
                 } else {
                     // Проверяем, выиграл ли пользователь
                     if winOrLose(data: data) {
-                        addScorePeople()
-                        print("Выиграл человек")
+                        if addScorePeople(){
+                            print("Выиграл человек")
+                        }
                         topPlayerWin = false // Пользователь внизу
                         withAnimation(.easeInOut(duration: 1)) {
                             winLabel = "YOU WIN"
@@ -132,8 +133,8 @@ class GameManager: ObservableObject {
                         
                     } else {
                         // Если нет, то выиграл компьютер
-                        addScoreComputer()
-                        print("Выиграл компьютер")
+                        if addScoreComputer(){
+                            print("Выиграл компьютер")}
                         topPlayerWin = true // Компьютер вверху
                         withAnimation(.easeInOut(duration: 1)) {
                             winLabel = "YOU LOSE"
